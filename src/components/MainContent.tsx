@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { Star, Compass, Code, GraduationCap } from "lucide-react";
 import MessageInput from "./MessageInput";
 
@@ -60,7 +60,7 @@ export default function MainContent() {
                 className="group p-6 bg-card dark:bg-card rounded-xl border-2 border-borderColor neo-pop-shadow hover:neo-pop-shadow-lg transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] text-left h-auto justify-start"
               >
                 <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${prompt.gradient} rounded-xl flex items-center justify-center text-black shadow-lg flex-shrink-0`}>
+                  <div className={`w-12 h-12 bg-linear-to-br ${prompt.gradient} rounded-xl flex items-center justify-center text-black shadow-lg shrink-0`}>
                     <IconComponent className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">

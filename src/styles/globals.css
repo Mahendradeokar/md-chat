@@ -1,87 +1,68 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config "./../../tailwind.config.ts";
 
-:root {
-  --background: hsl(0, 0%, 98%);
-  --foreground: hsl(220, 10%, 10%);
-  --muted: hsl(220, 5%, 96%);
-  --muted-foreground: hsl(220, 5%, 45%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(220, 10%, 10%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(220, 10%, 10%);
-  --border: hsl(220, 5%, 90%);
-  --input: hsl(220, 5%, 90%);
-  --primary: hsl(160, 65%, 45%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(220, 5%, 96%);
-  --secondary-foreground: hsl(220, 10%, 10%);
-  --accent: hsl(220, 5%, 95%);
-  --accent-foreground: hsl(220, 10%, 10%);
-  --destructive: hsl(0, 70%, 55%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(160, 65%, 45%);
-  --radius: 0.75rem;
-  
-  /* Neo-pop custom colors */
-  --neo-emerald: hsl(160, 65%, 45%);
-  --neo-blue: hsl(220, 90%, 60%);
-  --neo-purple: hsl(270, 70%, 60%);
-  --neo-orange: hsl(25, 85%, 55%);
-  --neo-yellow: hsl(50, 90%, 55%);
-  --neo-pink: hsl(330, 80%, 60%);
-  --neo-gray-50: hsl(220, 5%, 98%);
-  --neo-gray-100: hsl(220, 5%, 95%);
-  --neo-gray-200: hsl(220, 5%, 90%);
-  --neo-gray-300: hsl(220, 5%, 82%);
-  --neo-gray-400: hsl(220, 5%, 60%);
-  --neo-gray-500: hsl(220, 5%, 45%);
-  --neo-gray-600: hsl(220, 8%, 35%);
-  --neo-gray-700: hsl(220, 10%, 25%);
-  --neo-gray-800: hsl(220, 15%, 15%);
-  --neo-gray-900: hsl(220, 20%, 8%);
-}
+@layer utilities {
+  :root {
+    --background: hsl(0, 0%, 98%);
+    --foreground: hsl(220, 10%, 10%);
+    --muted: hsl(220, 5%, 96%);
+    --muted-foreground: hsl(220, 5%, 45%);
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(220, 10%, 10%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(220, 10%, 10%);
+    --border: hsl(220, 5%, 90%);
+    --input: hsl(220, 5%, 90%);
+    --primary: hsl(160, 65%, 45%);
+    --primary-foreground: hsl(0, 0%, 100%);
+    --secondary: hsl(220, 5%, 96%);
+    --secondary-foreground: hsl(220, 10%, 10%);
+    --accent: hsl(220, 5%, 95%);
+    --accent-foreground: hsl(220, 10%, 10%);
+    --destructive: hsl(0, 70%, 55%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --ring: hsl(160, 65%, 45%);
+    --radius: 0.75rem;
 
-.dark {
-  --background: hsl(220, 20%, 8%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(220, 15%, 15%);
-  --muted-foreground: hsl(220, 5%, 65%);
-  --popover: hsl(220, 20%, 8%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(220, 20%, 8%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(220, 15%, 15%);
-  --input: hsl(220, 15%, 15%);
-  --primary: hsl(160, 65%, 45%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(220, 15%, 15%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(220, 15%, 20%);
-  --accent-foreground: hsl(0, 0%, 98%);
-  --destructive: hsl(0, 62%, 30%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(160, 65%, 45%);
-}
-
-@layer base {
-  * {
-    /* @apply border-borderColor; */
+    /* Neo-pop custom colors */
+    --neo-emerald: hsl(160, 65%, 45%);
+    --neo-blue: hsl(220, 90%, 60%);
+    --neo-purple: hsl(270, 70%, 60%);
+    --neo-orange: hsl(25, 85%, 55%);
+    --neo-yellow: hsl(50, 90%, 55%);
+    --neo-pink: hsl(330, 80%, 60%);
+    --neo-gray-50: hsl(220, 5%, 98%);
+    --neo-gray-100: hsl(220, 5%, 95%);
+    --neo-gray-200: hsl(220, 5%, 90%);
+    --neo-gray-300: hsl(220, 5%, 82%);
+    --neo-gray-400: hsl(220, 5%, 60%);
+    --neo-gray-500: hsl(220, 5%, 45%);
+    --neo-gray-600: hsl(220, 8%, 35%);
+    --neo-gray-700: hsl(220, 10%, 25%);
+    --neo-gray-800: hsl(220, 15%, 15%);
+    --neo-gray-900: hsl(220, 20%, 8%);
   }
 
-  body {
-    @apply antialiased bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  html, body, #root {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
+  .dark {
+    --background: hsl(220, 20%, 8%);
+    --foreground: hsl(0, 0%, 98%);
+    --muted: hsl(220, 15%, 15%);
+    --muted-foreground: hsl(220, 5%, 65%);
+    --popover: hsl(220, 20%, 8%);
+    --popover-foreground: hsl(0, 0%, 98%);
+    --card: hsl(220, 20%, 8%);
+    --card-foreground: hsl(0, 0%, 98%);
+    --border: hsl(220, 15%, 15%);
+    --input: hsl(220, 15%, 15%);
+    --primary: hsl(160, 65%, 45%);
+    --primary-foreground: hsl(0, 0%, 100%);
+    --secondary: hsl(220, 15%, 15%);
+    --secondary-foreground: hsl(0, 0%, 98%);
+    --accent: hsl(220, 15%, 20%);
+    --accent-foreground: hsl(0, 0%, 98%);
+    --destructive: hsl(0, 62%, 30%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --ring: hsl(160, 65%, 45%);
   }
 }
 
@@ -151,4 +132,26 @@
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+@layer base {
+  * {
+    border-color: theme('colors.borderColor');
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  html, body, #root {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
 }

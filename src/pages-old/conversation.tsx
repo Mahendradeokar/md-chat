@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { Copy, User, Bot } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import MessageInput from "@/components/MessageInput";
-import Sidebar from "@/components/Sidebar";
+import { Avatar, AvatarFallback } from "~/components/ui/avatar";
+import MessageInput from "~/components/MessageInput";
+import Sidebar from "~/components/Sidebar";
 
 const mockMessages = [
   {
@@ -57,7 +57,7 @@ export default function ConversationPage() {
                       <p className="text-sm leading-relaxed">{message.content}</p>
                       <div className="text-xs opacity-75 mt-2">{message.timestamp}</div>
                     </div>
-                    <Avatar className="w-8 h-8 flex-shrink-0">
+                    <Avatar className="w-8 h-8 shrink-0">
                       <AvatarFallback className="bg-primary text-primary-foreground text-xs">
                         <User className="w-4 h-4" />
                       </AvatarFallback>

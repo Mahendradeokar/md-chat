@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Switch } from "~/components/ui/switch";
+import { Avatar, AvatarFallback } from "~/components/ui/avatar";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { ArrowLeft, User, Bell, Shield, Palette, Download, Trash2, Moon, Sun } from "lucide-react";
 import { Link } from "wouter";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "~/components/ThemeProvider";
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState(true);
@@ -87,7 +87,7 @@ export default function SettingsPage() {
             <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)] rounded-lg flex items-center justify-center">
                     <Bell className="w-4 h-4 text-white" />
                   </div>
                   <span>Notifications</span>
@@ -119,7 +119,7 @@ export default function SettingsPage() {
             <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)] rounded-lg flex items-center justify-center">
                     <Palette className="w-4 h-4 text-white" />
                   </div>
                   <span>Appearance</span>
@@ -147,7 +147,7 @@ export default function SettingsPage() {
             <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)] rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)] rounded-lg flex items-center justify-center">
                     <Shield className="w-4 h-4 text-white" />
                   </div>
                   <span>Privacy & Security</span>

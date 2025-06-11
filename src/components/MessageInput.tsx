@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "~/components/ui/button";
+import { Textarea } from "~/components/ui/textarea";
 import { Plus, Paperclip, Globe, Send, ChevronDown } from "lucide-react";
 
 export default function MessageInput() {
@@ -79,7 +81,7 @@ export default function MessageInput() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your message here..."
-                className="flex-1 resize-none border-none outline-none text-foreground placeholder-muted-foreground bg-transparent py-2 min-h-[2.5rem] max-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="flex-1 resize-none border-none outline-none text-foreground placeholder-muted-foreground bg-transparent py-2 min-h-10 max-h-[120px] focus-visible:ring-0 focus-visible:ring-offset-0"
                 rows={1}
                 onInput={(e) => {
                   const target = e.target as HTMLTextAreaElement;

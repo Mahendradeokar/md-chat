@@ -1,7 +1,9 @@
+"use client"
+
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Avatar, AvatarFallback } from "~/components/ui/avatar";
 import {
   Plus,
   Search,
@@ -13,7 +15,7 @@ import {
   ChevronRight,
   Palette,
 } from "lucide-react";
-import { Link } from "wouter";
+import Link from "next/link";
 
 const mockThreads = [
   { id: 1, title: "Greeting", isActive: false, icon: MessageCircle },
@@ -58,7 +60,7 @@ export default function Sidebar() {
               return (
                 <Link
                   key={thread.id}
-                  href={thread.isActive ? "/" : `/chat/${thread.id}`}
+                  href={thread.isActive ? "/" : `/conversation/${thread.id}`}
                 >
                   <button
                     className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 group border ${
@@ -107,7 +109,7 @@ export default function Sidebar() {
       <div className="px-5 py-4 border-t border-borderColor">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
-            <Avatar className="w-8 h-8 flex-shrink-0">
+            <Avatar className="w-8 h-8 shrink-0">
               <AvatarFallback className="bg-primary text-primary-foreground font-semibold text-xs">
                 M
               </AvatarFallback>
@@ -118,7 +120,7 @@ export default function Sidebar() {
             </div>
           </div>
           <Link href="/settings">
-            <Button variant="ghost" size="sm" className="p-2 h-auto w-auto hover:bg-accent rounded-lg flex-shrink-0 ml-3">
+            <Button variant="ghost" size="sm" className="p-2 h-auto w-auto hover:bg-accent rounded-lg shrink-0 ml-3">
               <Settings className="w-4 h-4" />
             </Button>
           </Link>
