@@ -19,10 +19,10 @@ export default function SettingsPage() {
     <div className="min-h-screen w-screen bg-background">
       <main className="h-screen overflow-y-auto bg-background">
         {/* Header */}
-        <div className="px-8 py-6 border-b border-border bg-card/50">
+        <div className="px-8 py-6 border-b border-borderColor bg-card/50">
           <div className="flex items-center space-x-4 mb-4">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="p-2 neo-pop-shadow-sm border-2 border-border">
+              <Button variant="ghost" size="sm" className="p-2 neo-pop-shadow-sm border-2 border-borderColor">
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Link>
@@ -35,7 +35,7 @@ export default function SettingsPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Profile Section */}
-            <Card className="border-2 border-border neo-pop-shadow bg-card">
+            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -84,7 +84,7 @@ export default function SettingsPage() {
             </Card>
 
             {/* Notifications Section */}
-            <Card className="border-2 border-border neo-pop-shadow bg-card">
+            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)] rounded-lg flex items-center justify-center">
@@ -116,7 +116,7 @@ export default function SettingsPage() {
             </Card>
 
             {/* Appearance Section */}
-            <Card className="border-2 border-border neo-pop-shadow bg-card">
+            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)] rounded-lg flex items-center justify-center">
@@ -144,7 +144,7 @@ export default function SettingsPage() {
             </Card>
 
             {/* Privacy Section */}
-            <Card className="border-2 border-border neo-pop-shadow bg-card">
+            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)] rounded-lg flex items-center justify-center">
@@ -179,7 +179,7 @@ export default function SettingsPage() {
             </Card>
 
             {/* Account Section */}
-            <Card className="border-2 border-border neo-pop-shadow bg-card md:col-span-2">
+            <Card className="border-2 border-borderColor neo-pop-shadow bg-card md:col-span-2">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Account Plan</CardTitle>

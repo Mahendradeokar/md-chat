@@ -26,14 +26,14 @@ export default function Sidebar() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <aside className="w-[20%] min-w-[280px] bg-card dark:bg-card border-r border-border flex flex-col h-full">
+    <aside className="w-[20%] min-w-[280px] bg-card dark:bg-card border-r border-borderColor flex flex-col h-full">
       {/* Header */}
-      <div className="px-5 py-5 border-b border-border">
+      <div className="px-5 py-5 border-b border-borderColor">
         <h1 className="text-2xl font-bold text-foreground">T3.chat</h1>
       </div>
 
       {/* Search */}
-      <div className="px-5 py-4 border-b border-border">
+      <div className="px-5 py-4 border-b border-borderColor">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
           <Input
@@ -41,7 +41,7 @@ export default function Sidebar() {
             placeholder="Search your threads..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-background dark:bg-background border-2 border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150 neo-pop-shadow-sm"
+            className="w-full pl-10 pr-4 py-2.5 bg-background dark:bg-background border-2 border-borderColor rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-150 neo-pop-shadow-sm"
           />
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Sidebar() {
                     className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 group border ${
                       thread.isActive
                         ? "bg-primary text-primary-foreground border-primary shadow-[2px_2px_0px_0px] shadow-primary/30"
-                        : "bg-background dark:bg-background border-border hover:bg-accent dark:hover:bg-accent hover:border-primary/30 hover:shadow-[1px_1px_0px_0px] hover:shadow-border hover:scale-[1.01] active:scale-[0.99]"
+                        : "bg-background dark:bg-background border-borderColor hover:bg-accent dark:hover:bg-accent hover:border-primary/30 hover:shadow-[1px_1px_0px_0px] hover:shadow-border hover:scale-[1.01] active:scale-[0.99]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation Links */}
-      <div className="px-5 py-3 border-t border-border">
+      <div className="px-5 py-3 border-t border-borderColor">
         <Link href="/showcase">
           <Button variant="ghost" className="w-full justify-start text-left hover:bg-accent rounded-lg p-3 transition-all duration-200">
             <Palette className="w-4 h-4 mr-2" />
@@ -104,7 +104,7 @@ export default function Sidebar() {
       </div>
 
       {/* User Profile */}
-      <div className="px-5 py-4 border-t border-border">
+      <div className="px-5 py-4 border-t border-borderColor">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <Avatar className="w-8 h-8 flex-shrink-0">

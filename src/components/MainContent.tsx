@@ -57,7 +57,7 @@ export default function MainContent() {
               <Button
                 key={prompt.id}
                 variant="ghost"
-                className="group p-6 bg-card dark:bg-card rounded-xl border-2 border-border neo-pop-shadow hover:neo-pop-shadow-lg transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] text-left h-auto justify-start"
+                className="group p-6 bg-card dark:bg-card rounded-xl border-2 border-borderColor neo-pop-shadow hover:neo-pop-shadow-lg transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] text-left h-auto justify-start"
               >
                 <div className="flex items-start space-x-4">
                   <div className={`w-12 h-12 bg-gradient-to-br ${prompt.gradient} rounded-xl flex items-center justify-center text-black shadow-lg flex-shrink-0`}>

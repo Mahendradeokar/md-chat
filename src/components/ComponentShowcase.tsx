@@ -276,16 +276,16 @@ export default function ComponentShowcase() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-2">
-                <div className="h-12 bg-primary border-2 border-border rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-primary-foreground font-semibold cursor-pointer">
+                <div className="h-12 bg-primary border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-primary-foreground font-semibold cursor-pointer">
                   Primary
                 </div>
-                <div className="h-12 bg-secondary border-2 border-border rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-secondary-foreground font-semibold cursor-pointer">
+                <div className="h-12 bg-secondary border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-secondary-foreground font-semibold cursor-pointer">
                   Secondary
                 </div>
-                <div className="h-12 bg-accent border-2 border-border rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-accent-foreground font-semibold cursor-pointer">
+                <div className="h-12 bg-accent border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-accent-foreground font-semibold cursor-pointer">
                   Accent
                 </div>
-                <div className="h-12 bg-muted border-2 border-border rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-muted-foreground font-semibold cursor-pointer">
+                <div className="h-12 bg-muted border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-muted-foreground font-semibold cursor-pointer">
                   Muted
                 </div>
               </div>

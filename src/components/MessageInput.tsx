@@ -31,9 +31,9 @@ export default function MessageInput() {
 
         {/* Message Input Container with Model Wrapper */}
         <form onSubmit={handleSubmit}>
-          <div className="bg-card dark:bg-card border-2 border-border rounded-2xl neo-pop-shadow focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all duration-150">
+          <div className="bg-card dark:bg-card border-2 border-borderColor rounded-2xl neo-pop-shadow focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all duration-150">
             {/* Model Selector Header */}
-            <div className="px-4 py-3 border-b border-border">
+            <div className="px-4 py-3 border-b border-borderColor">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
