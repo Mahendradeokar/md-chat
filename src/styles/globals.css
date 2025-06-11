@@ -67,7 +67,7 @@
 
 @layer base {
   * {
-    @apply border-borderColor;
+    /* @apply border-borderColor; */
   }
 
   body {
