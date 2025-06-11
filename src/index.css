@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 98%);
+  --foreground: hsl(220, 10%, 10%);
+  --muted: hsl(220, 5%, 96%);
+  --muted-foreground: hsl(220, 5%, 45%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 10%, 10%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 10%, 10%);
+  --border: hsl(220, 5%, 90%);
+  --input: hsl(220, 5%, 90%);
+  --primary: hsl(160, 65%, 45%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(220, 5%, 96%);
+  --secondary-foreground: hsl(220, 10%, 10%);
+  --accent: hsl(220, 5%, 95%);
+  --accent-foreground: hsl(220, 10%, 10%);
+  --destructive: hsl(0, 70%, 55%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(160, 65%, 45%);
+  --radius: 0.75rem;
+  
+  /* Neo-pop custom colors */
+  --neo-emerald: hsl(160, 65%, 45%);
+  --neo-blue: hsl(220, 90%, 60%);
+  --neo-purple: hsl(270, 70%, 60%);
+  --neo-orange: hsl(25, 85%, 55%);
+  --neo-yellow: hsl(50, 90%, 55%);
+  --neo-pink: hsl(330, 80%, 60%);
+  --neo-gray-50: hsl(220, 5%, 98%);
+  --neo-gray-100: hsl(220, 5%, 95%);
+  --neo-gray-200: hsl(220, 5%, 90%);
+  --neo-gray-300: hsl(220, 5%, 82%);
+  --neo-gray-400: hsl(220, 5%, 60%);
+  --neo-gray-500: hsl(220, 5%, 45%);
+  --neo-gray-600: hsl(220, 8%, 35%);
+  --neo-gray-700: hsl(220, 10%, 25%);
+  --neo-gray-800: hsl(220, 15%, 15%);
+  --neo-gray-900: hsl(220, 20%, 8%);
+}
+
+.dark {
+  --background: hsl(220, 20%, 8%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(220, 15%, 15%);
+  --muted-foreground: hsl(220, 5%, 65%);
+  --popover: hsl(220, 20%, 8%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(220, 20%, 8%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(220, 15%, 15%);
+  --input: hsl(220, 15%, 15%);
+  --primary: hsl(160, 65%, 45%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(220, 15%, 15%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(220, 15%, 20%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(160, 65%, 45%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  html, body, #root {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .neo-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+  
+  .neo-shadow-lg {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .neo-shadow-xl {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .neo-pop-shadow {
+    box-shadow: 4px 4px 0px 0px hsl(var(--neo-gray-800));
+  }
+  
+  .neo-pop-shadow-sm {
+    box-shadow: 2px 2px 0px 0px hsl(var(--neo-gray-800));
+  }
+  
+  .neo-pop-shadow-lg {
+    box-shadow: 6px 6px 0px 0px hsl(var(--neo-gray-800));
+  }
+  
+  .dark .neo-pop-shadow {
+    box-shadow: 4px 4px 0px 0px hsl(var(--neo-gray-200));
+  }
+  
+  .dark .neo-pop-shadow-sm {
+    box-shadow: 2px 2px 0px 0px hsl(var(--neo-gray-200));
+  }
+  
+  .dark .neo-pop-shadow-lg {
+    box-shadow: 6px 6px 0px 0px hsl(var(--neo-gray-200));
+  }
+  
+  .neo-gradient {
+    background: linear-gradient(135deg, hsl(var(--neo-gray-50)) 0%, hsl(var(--neo-gray-100)) 100%);
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.15s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.2s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,82 @@
+Create a UI for the following descriptions
+
+The user interface (UI) of the T3.chat application is designed to provide a seamless and engaging conversational experience between the user and the chatbot. It features a clean, minimalistic layout divided into two main sections: a left sidebar for navigation and a main content area for interaction. The design emphasizes usability with a modern aesthetic. Below is a detailed explanation of the UI, breaking down its components and their functionalities.
+
+---
+
+### Overall Layout
+The UI is split into two primary sections:
+- **Left Sidebar:** Occupies about 25% of the screen width and serves as the navigation panel.
+- **Main Content Area:** Takes up the remaining 75% and is where the conversation with the chatbot occurs.
+
+This division ensures a clear separation between navigation and interaction, making the interface intuitive and easy to use.
+
+---
+
+### Left Sidebar (Navigation Panel)
+The left sidebar contains several key elements for managing conversations and user information.
+
+#### 1. Header Section
+- **Application Title:** At the top, "T3.chat" is displayed in bold black text, establishing the brand identity.
+- **"New Chat" Button:** Below the title, a button with labeled "New Chat" allows users to initiate a new conversation thread with a single click.
+
+#### 2. Search Bar
+- **Functionality:**  a search bar enables users to search for specific chat threads.
+- **Placeholder Text:** It includes placeholder text reading "Search your threads..." to guide the user.
+
+#### 3. Chat Threads Section
+- **Heading:** Labeled "Today" in text, this section lists recent or ongoing chat threads.
+- **Thread Titles:** Examples include:
+  - "Greeting"
+  - "New Thread"
+  - "Greeting Title"
+  - "History of Motivation"
+- **Purpose:** Clicking a title loads the corresponding conversation into the main content area, providing quick access to past interactions.
+
+#### 4. User Profile Section
+- **Location:** At the bottom of the sidebar.
+- **Avatar:** A circular icon with a white "M" on a teal background represents the user.
+- **User Details:** Displays "MD" in text as the user’s name, with "Free" in smaller text below, indicating the account status or subscription plan.
+
+---
+
+### Main Content Area (Conversation Interface)
+The main content area is where the user interacts with the chatbot. It is divided into three distinct sections: a greeting message, suggested prompts, and a message input area. This all are the section of the same page.
+
+#### 1. Greeting Message
+- **Text:** At the top, a bold black message reads, "How can I help you, MD?" 
+- **Purpose:** This personalized greeting addresses the user by name, setting a friendly and welcoming tone for the interaction.
+
+#### 2. Suggested Prompts
+- **Design:** Below the greeting, four buttons with rounded edges are evenly spaced in a single row.
+- **Purpose:** These prompts assist users in starting conversations by offering example questions, each paired with a thematic icon:
+  - "How does AI work?" (star icon, suggesting a "Create" theme)
+  - "Are black holes real?" (compass icon, suggesting an "Explore" theme)
+  - "How many Rs are in the word 'strawberry'?" (code icon, suggesting a "Code" theme)
+  - "What is the meaning of life?" (graduation cap icon, suggesting a "Learn" theme)
+- **Functionality:** Clicking a prompt likely sends it to the chatbot, initiating a response.
+
+#### 3. Message Input Area
+- **Location:** At the bottom of the main content area.
+- **Input Box:** a textarea with placeholder text: "Type your message here..."  guiding users to enter their queries.
+- **Send Button:** A button to the right submits the typed message.
+- **Additional Options:** Below the input box:
+  - **AI Model Label:** "Gemini 2.0 Flash" indicates the AI model or version in use, possibly selectable via a dropdown. which will be open dy default to show the multiple modal available
+like ChatGpt 4.1 mistra and grok and others...
+  - **Icons:**
+    - A globe icon, likely for web search or extended features.
+    - A paperclip icon, for attaching files or media to messages.
+
+---
+
+### Design and Functionality
+- **Usability:** The responsive layout ensures easy navigation, with the sidebar providing quick access to threads and the main area focusing on conversation. Suggested prompts guide new users, while the search bar and thread list cater to returning users with past interactions.
+
+---
+
+### Summary
+The T3.chat UI combines a well-organized layout with thoughtful design choices to create a user-friendly conversational platform. The left sidebar simplifies navigation with tools like the "New Chat" button, search bar, and thread list, while the main content area fosters engagement through a personalized greeting, helpful prompts, and an intuitive message input system. Together, these elements deliver a seamless experience, balancing functionality with a clean, modern aesthetic.
+
+Create the UI/UX from the lens of John ive and dieter rams. Before implementing think how they would have design this. 
+
+Must be Minimilistic, clean and usable
