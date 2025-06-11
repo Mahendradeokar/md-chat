@@ -11,6 +11,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      borderColor: {
+        borderColor: "var(--border)",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
