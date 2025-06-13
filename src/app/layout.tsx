@@ -2,6 +2,8 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
+import { ConvexClientProvider } from "~/Providers/Convex";
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 // import { ThemeProvider } from "~/components/ThemeProvider";
 
 export const metadata: Metadata = {
@@ -19,12 +21,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body>
-        {/* <ThemeProvider defaultTheme="light" storageKey="t3-chat-theme"> */}
-          {children}
-        {/* </ThemeProvider> */}
-      </body>
-    </html>
+    <ConvexAuthNextjsServerProvider>
+      <html lang="en" className={`${geist.variable}`}>
+        <body>
+          {/* <ThemeProvider defaultTheme="light" storageKey="t3-chat-theme"> */}
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+          {/* </ThemeProvider> */}
+        </body>
+      </html>
+    </ConvexAuthNextjsServerProvider>
   );
 }

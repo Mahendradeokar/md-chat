@@ -36,9 +36,11 @@ const mockMessages = [
 
 export default function ConversationPage() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
-
+  
   const copyToClipboard = (text: string, messageId: number) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch((error) => {
+      console.log(error)
+    });
     setCopiedId(messageId);
     setTimeout(() => setCopiedId(null), 2000);
   };
