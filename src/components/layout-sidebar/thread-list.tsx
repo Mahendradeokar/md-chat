@@ -8,6 +8,7 @@ import { Condition, Else, If } from "../shared";
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { useParams } from "next/navigation";
+import { ScrollArea } from "../ui/scroll-area";
 
 const ThreadLoading = () => {
   return Array.from({ length: 3 }).map((_, index) => (
@@ -58,7 +59,7 @@ export default function ThreadList() {
       </div>
 
       {/* Thread List */}
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+      <ScrollArea className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         <div className="space-y-3">
           <Condition>
             <If condition={isLoading}>
@@ -107,7 +108,7 @@ export default function ThreadList() {
             </Else>
           </Condition>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 }

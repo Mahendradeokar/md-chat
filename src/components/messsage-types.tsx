@@ -72,14 +72,8 @@ export const ErrorMessage = ({ onRetry }: { onRetry: () => void }) => {
     <div className="flex items-start space-x-4">
       <div className="bg-destructive/10 group relative max-w-[70%] rounded-2xl rounded-tl-md px-4 py-3">
         <p className="text-destructive text-sm leading-relaxed">
-          Something went wrong while generating the response. This could be due
-          to:
+          Something went wrong while generating the response. Please retry again
         </p>
-        <ul className="text-destructive/80 mt-2 list-inside list-disc text-sm">
-          <li>Network connectivity issues</li>
-          <li>Server timeout</li>
-          <li>Rate limiting</li>
-        </ul>
         <div className="mt-4 flex items-center">
           <Button
             variant="ghost"
