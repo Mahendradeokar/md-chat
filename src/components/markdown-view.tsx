@@ -17,10 +17,14 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ markdown }) => {
         <SyntaxHighlighter
           {...rest}
           ref={rest.ref as unknown as Ref<SyntaxHighlighter>}
-          PreTag="div"
-          CodeTag="div"
+          PreTag={(props) => (
+            <div
+              {...props}
+              className="overflow-x-auto rounded-lg bg-black p-4 dark:bg-white"
+            />
+          )}
+          CodeTag={(props) => <div {...props} className="font-mono text-sm" />}
           language={match[1]}
-          // style={dark}
         >
           {/* eslint-disable-next-line @typescript-eslint/no-base-to-string */}
           {String(children).replace(/\n$/, "")}
@@ -34,7 +38,7 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ markdown }) => {
   };
 
   return (
-    <div className="prose prose-base dark:prose-invert">
+    <div className="prose dark:prose-invert w-full max-w-none">
       <Markdown components={components}>{markdown}</Markdown>
     </div>
   );

@@ -45,11 +45,8 @@ export const AssistantMessage = ({
 
   return (
     <div className="flex items-start space-x-4">
-      <div className="bg-background group relative max-w-[90%] rounded-2xl rounded-tl-md px-4 py-3">
-        <div className="text-foreground text-sm">
-          <MarkdownView markdown={content} />
-          {/* {streamingText} */}
-        </div>
+      <div className="bg-background group relative w-[90%] rounded-2xl rounded-tl-md px-4 py-3">
+        <MarkdownView markdown={content} />
         <div className="text-muted-foreground mt-2 flex items-center text-xs">
           <Button
             variant="ghost"
