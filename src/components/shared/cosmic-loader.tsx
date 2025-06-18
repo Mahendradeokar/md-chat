@@ -1,4 +1,3 @@
-import { Loading } from "./loading";
 import {
   Card,
   CardContent,
@@ -9,6 +8,7 @@ import {
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "~/lib/utils";
+import { Loading } from "./loading";
 
 interface CosmicLoaderProps {
   title?: string;

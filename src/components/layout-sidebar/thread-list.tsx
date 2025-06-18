@@ -4,20 +4,20 @@ import { useState } from "react";
 import { ChevronRight, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import ThreadSearch from "./thread-search";
-import { Condition, Else, If } from "../shared";
+import { Condition, Else } from "../shared";
 import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
 import { api } from "~/../convex/_generated/api";
 
-const ThreadLoading = () => {
-  return Array.from({ length: 3 }).map((_, index) => (
-    <div key={index} className="space-y-2">
-      <div className="from-muted/50 to-muted/30 h-4 w-3/4 animate-pulse rounded-full bg-gradient-to-r" />
-      <div className="from-muted/30 to-muted/20 h-3 w-1/2 animate-pulse rounded-full bg-gradient-to-r" />
-    </div>
-  ));
-};
+// const ThreadLoading = () => {
+//   return Array.from({ length: 3 }).map((_, index) => (
+//     <div key={index} className="space-y-2">
+//       <div className="from-muted/50 to-muted/30 h-4 w-3/4 animate-pulse rounded-full bg-gradient-to-r" />
+//       <div className="from-muted/30 to-muted/20 h-3 w-1/2 animate-pulse rounded-full bg-gradient-to-r" />
+//     </div>
+//   ));
+// };
 
 const EmptyState = () => (
   <div className="flex flex-col items-center justify-center py-16 text-center">
