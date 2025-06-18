@@ -8,13 +8,11 @@ import { useMDChat } from "~/hooks/use-chat";
 import { useRouter, usePathname } from "next/navigation";
 import { appendIdInUrl } from "~/lib/utils";
 import { ROUTES_URL } from "~/constants";
+import { ModelSelector } from "./model-selector";
 
 export default function MessageInput() {
-  const chatRes = useMDChat();
-  const { messages, data, input, handleInputChange, handleSubmit, threadId } =
-    chatRes;
+  const { input, handleInputChange, handleSubmit, threadId } = useMDChat();
 
-  console.log("messages", messages);
   const [selectedModel, setSelectedModel] = useState("Gemini 2.0 Flash");
   const router = useRouter();
   const pathname = usePathname();
@@ -36,6 +34,10 @@ export default function MessageInput() {
     }
   };
 
+  const handleModelSelect = (model: string) => {
+    setSelectedModel(model);
+  };
+
   return (
     <div className="bg-background px-6 pb-6">
       <div className="relative mx-auto max-w-4xl">
@@ -55,29 +57,15 @@ export default function MessageInput() {
         <form onSubmit={handleMessageSubmit}>
           <div className="bg-card dark:bg-card border-borderColor neo-pop-shadow focus-within:ring-primary rounded-2xl border-2 transition-all duration-150 focus-within:border-transparent focus-within:ring-2">
             {/* Model Selector Header */}
-            <div className="border-borderColor border-b px-4 py-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="bg-primary h-2 w-2 animate-pulse rounded-full"></div>
-                  <span className="text-foreground text-sm font-medium">
-                    {selectedModel}
-                  </span>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="text-muted-foreground hover:text-foreground h-auto p-1 transition-colors duration-150"
-                  >
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <ModelSelector
+              selectedModel={selectedModel}
+              onModelSelect={handleModelSelect}
+            />
 
             {/* Input Area */}
             <div className="flex items-end px-4 py-3">
-              {/* Input controls (left side inside textarea) */}
-              <div className="mr-3 flex items-center space-x-2">
+              {/* Un-cooked */}
+              {/* <div className="mr-3 flex items-center space-x-2">
                 <Button
                   type="button"
                   variant="ghost"
@@ -94,7 +82,7 @@ export default function MessageInput() {
                 >
                   <Globe className="h-4 w-4" />
                 </Button>
-              </div>
+              </div> */}
 
               {/* Textarea */}
               <Textarea

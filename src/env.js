@@ -19,7 +19,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_CONVEX_URL: z.string(),
-    NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT: z.string(),
+    // NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT: z.string(),
   },
 
   /**
@@ -30,8 +30,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     CONVEX_DEPLOYMENT: process.env.CONVEX_DEPLOYMENT,
     NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
-    NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT:
-      process.env.NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT,
+    // NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT:
+    //   process.env.NEXT_PUBLIC_FRONTEND_URL_AUTH_REDIRECT,
     OPEN_ROUTER_KEY: process.env.OPEN_ROUTER_KEY,
   },
   /**

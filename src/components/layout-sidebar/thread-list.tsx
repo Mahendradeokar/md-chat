@@ -6,9 +6,9 @@ import Link from "next/link";
 import ThreadSearch from "./thread-search";
 import { Condition, Else, If } from "../shared";
 import { useQuery } from "convex/react";
-import { api } from "convex/_generated/api";
 import { useParams } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
+import { api } from "convex/_generated/api";
 
 const ThreadLoading = () => {
   return Array.from({ length: 3 }).map((_, index) => (
