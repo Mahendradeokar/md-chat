@@ -21,7 +21,7 @@ import promptLoader from "~/prompts/PromptLoader";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "~/../convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { getMockTitleModel } from "./mock";
+// import { getMockTitleModel } from "./mock";
 
 const titleGenerationPrompt = promptLoader.getPromptById("TITLE_GENERATOR");
 
@@ -56,8 +56,8 @@ const getTitleCreationPromise = async ({
 
   const result = await tryCatch(
     generateText({
-      // model: openRouter(AVAILABLE_MODELS.META_LLAMA_3_3_B_INSTRUCT.id),
-      model: getMockTitleModel(),
+      model: openRouter(AVAILABLE_MODELS.META_LLAMA_3_3_B_INSTRUCT.id),
+      // model: getMockTitleModel(),
       maxTokens: 20,
       system: titleGenerationPrompt.content,
       maxRetries: 2,
