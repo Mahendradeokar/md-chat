@@ -2,9 +2,10 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ConvexClientProvider } from "~/Providers/Convex";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
-// import { ThemeProvider } from "~/components/ThemeProvider";
+import { Toaster } from "~/components/ui/toaster";
+import { ConvexClientProvider } from "~/providers";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -22,11 +23,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en" className={`${geist.variable}`}>
+      <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
         <body>
-          {/* <ThemeProvider defaultTheme="light" storageKey="t3-chat-theme"> */}
-          <ConvexClientProvider>{children}</ConvexClientProvider>
-          {/* </ThemeProvider> */}
+          <ThemeProvider
+            defaultTheme="dark"
+            enableSystem={false}
+            attribute="class"
+            storageKey="app-theme"
+          >
+            <ConvexClientProvider>{children}</ConvexClientProvider>
+            <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     </ConvexAuthNextjsServerProvider>

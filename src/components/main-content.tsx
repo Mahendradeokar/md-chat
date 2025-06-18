@@ -1,6 +1,5 @@
 import { Button } from "~/components/ui/button";
 import { Star, Compass, Code, GraduationCap } from "lucide-react";
-import MessageInput from "./MessageInput";
 
 const suggestedPrompts = [
   {
@@ -9,7 +8,7 @@ const suggestedPrompts = [
     category: "Create",
     icon: Star,
     gradient: "from-[hsl(var(--neo-emerald))] to-[hsl(160,65%,40%)]",
-    hoverColor: "group-hover:text-[hsl(var(--neo-emerald))]"
+    hoverColor: "group-hover:text-[hsl(var(--neo-emerald))]",
   },
   {
     id: 2,
@@ -17,7 +16,7 @@ const suggestedPrompts = [
     category: "Explore",
     icon: Compass,
     gradient: "from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)]",
-    hoverColor: "group-hover:text-[hsl(var(--neo-blue))]"
+    hoverColor: "group-hover:text-[hsl(var(--neo-blue))]",
   },
   {
     id: 3,
@@ -25,7 +24,7 @@ const suggestedPrompts = [
     category: "Code",
     icon: Code,
     gradient: "from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)]",
-    hoverColor: "group-hover:text-[hsl(var(--neo-purple))]"
+    hoverColor: "group-hover:text-[hsl(var(--neo-purple))]",
   },
   {
     id: 4,
@@ -33,41 +32,46 @@ const suggestedPrompts = [
     category: "Learn",
     icon: GraduationCap,
     gradient: "from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)]",
-    hoverColor: "group-hover:text-[hsl(var(--neo-orange))]"
-  }
+    hoverColor: "group-hover:text-[hsl(var(--neo-orange))]",
+  },
 ];
 
 export default function MainContent() {
   return (
-    <main className="flex-1 flex flex-col bg-background h-full">
+    <>
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 py-8">
+      <div className="flex flex-1 flex-col items-center justify-center px-8 py-8">
         {/* Welcome Greeting */}
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl font-bold text-foreground mb-2">
-            How can I help you, <span className="text-[hsl(var(--neo-emerald))]">MD</span>?
+        <div className="animate-fade-in mb-12 text-center">
+          <h2 className="text-foreground mb-2 text-3xl font-bold">
+            How can I help you,{" "}
+            <span className="text-[hsl(var(--neo-emerald))]">MD</span>?
           </h2>
         </div>
 
         {/* Suggested Prompts */}
-        <div className="grid grid-cols-2 gap-4 mb-16 w-full max-w-4xl animate-slide-up">
+        <div className="animate-slide-up mb-16 grid w-full max-w-4xl grid-cols-2 gap-4">
           {suggestedPrompts.map((prompt) => {
             const IconComponent = prompt.icon;
             return (
               <Button
                 key={prompt.id}
                 variant="ghost"
-                className="group p-6 bg-card dark:bg-card rounded-xl border-2 border-borderColor neo-pop-shadow hover:neo-pop-shadow-lg transition-all duration-150 hover:scale-[1.02] active:scale-[0.98] text-left h-auto justify-start"
+                className="group bg-card dark:bg-card border-borderColor neo-pop-shadow hover:neo-pop-shadow-lg h-auto justify-start rounded-xl border-2 p-6 text-left transition-all duration-150 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 bg-linear-to-br ${prompt.gradient} rounded-xl flex items-center justify-center text-black shadow-lg shrink-0`}>
-                    <IconComponent className="w-6 h-6" />
+                  <div
+                    className={`h-12 w-12 bg-linear-to-br ${prompt.gradient} flex shrink-0 items-center justify-center rounded-xl text-black shadow-lg`}
+                  >
+                    <IconComponent className="h-6 w-6" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className={`font-medium text-foreground transition-colors duration-150 ${prompt.hoverColor} break-words`}>
+                  <div className="min-w-0 flex-1">
+                    <h3
+                      className={`text-foreground font-medium transition-colors duration-150 ${prompt.hoverColor} break-words`}
+                    >
                       {prompt.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className="text-muted-foreground mt-1 text-xs">
                       {prompt.category}
                     </p>
                   </div>
@@ -77,9 +81,6 @@ export default function MainContent() {
           })}
         </div>
       </div>
-
-      {/* Message Input Area */}
-      <MessageInput />
-    </main>
+    </>
   );
 }

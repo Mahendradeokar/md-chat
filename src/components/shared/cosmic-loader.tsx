@@ -1,5 +1,11 @@
-import { Loading } from "./Loading";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { Loading } from "./loading";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "~/lib/utils";
@@ -34,20 +40,23 @@ export function CosmicLoader({
   }, [router, loadingDuration, redirectPath]);
 
   return (
-    <div className={cn("bg-background flex min-h-screen items-center justify-center p-6", className)}>
+    <div
+      className={cn(
+        "bg-background flex min-h-screen items-center justify-center p-6",
+        className,
+      )}
+    >
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-2 text-center">
           <CardTitle className="text-2xl">{title}</CardTitle>
-          <CardDescription>
-            {description}
-          </CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex justify-center">
             <Loading />
           </div>
           {redirectPath && (
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-center text-sm">
               Redirecting you...
             </p>
           )}
@@ -55,4 +64,4 @@ export function CosmicLoader({
       </Card>
     </div>
   );
-} 
+}

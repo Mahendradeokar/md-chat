@@ -3,10 +3,26 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Switch } from "~/components/ui/switch";
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
-import { ArrowLeft, User, Bell, Shield, Palette, Download, Trash2, Moon, Sun } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
+import {
+  ArrowLeft,
+  User,
+  Bell,
+  Shield,
+  Palette,
+  Download,
+  Trash2,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { Link } from "wouter";
-import { useTheme } from "~/components/ThemeProvider";
+import { useTheme } from "~/components/theme-provider";
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState(true);
@@ -16,79 +32,90 @@ export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="min-h-screen w-screen bg-background">
-      <main className="h-screen overflow-y-auto bg-background">
+    <div className="bg-background min-h-screen w-screen">
+      <main className="bg-background h-screen overflow-y-auto">
         {/* Header */}
-        <div className="px-8 py-6 border-b border-borderColor bg-card/50">
-          <div className="flex items-center space-x-4 mb-4">
+        <div className="border-borderColor bg-card/50 border-b px-8 py-6">
+          <div className="mb-4 flex items-center space-x-4">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="p-2 neo-pop-shadow-sm border-2 border-borderColor">
-                <ArrowLeft className="w-4 h-4" />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="neo-pop-shadow-sm border-borderColor border-2 p-2"
+              >
+                <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <h1 className="text-3xl font-bold text-foreground">Settings</h1>
+            <h1 className="text-foreground text-3xl font-bold">Settings</h1>
           </div>
         </div>
 
         {/* Settings Content */}
         <div className="flex-1 px-8 py-8">
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
             {/* Profile Section */}
-            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
+            <Card className="border-borderColor neo-pop-shadow bg-card border-2">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                    <User className="w-4 h-4 text-primary-foreground" />
+                  <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
+                    <User className="text-primary-foreground h-4 w-4" />
                   </div>
                   <span>Profile</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <Avatar className="w-16 h-16">
-                    <AvatarFallback className="bg-primary text-primary-foreground font-semibold text-lg">
+                  <Avatar className="h-16 w-16">
+                    <AvatarFallback className="bg-primary text-primary-foreground text-lg font-semibold">
                       M
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
-                    <Button variant="outline" size="sm" className="neo-pop-shadow-sm border-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="neo-pop-shadow-sm border-2"
+                    >
                       Change Avatar
                     </Button>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">Name</label>
+                    <label className="text-foreground mb-2 block text-sm font-medium">
+                      Name
+                    </label>
                     <Input
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
-                      className="border-2 neo-pop-shadow-sm"
+                      className="neo-pop-shadow-sm border-2"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-2 block">Email</label>
+                    <label className="text-foreground mb-2 block text-sm font-medium">
+                      Email
+                    </label>
                     <Input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="border-2 neo-pop-shadow-sm"
+                      className="neo-pop-shadow-sm border-2"
                     />
                   </div>
                 </div>
-                
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground neo-pop-shadow border-2 border-primary">
+
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground neo-pop-shadow border-primary border-2">
                   Save Changes
                 </Button>
               </CardContent>
             </Card>
 
             {/* Notifications Section */}
-            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
+            <Card className="border-borderColor neo-pop-shadow bg-card border-2">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)] rounded-lg flex items-center justify-center">
-                    <Bell className="w-4 h-4 text-white" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-[hsl(var(--neo-blue))] to-[hsl(220,90%,55%)]">
+                    <Bell className="h-4 w-4 text-white" />
                   </div>
                   <span>Notifications</span>
                 </CardTitle>
@@ -96,19 +123,27 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium text-foreground">Push Notifications</h3>
-                    <p className="text-xs text-muted-foreground">Receive notifications for new messages</p>
+                    <h3 className="text-foreground text-sm font-medium">
+                      Push Notifications
+                    </h3>
+                    <p className="text-muted-foreground text-xs">
+                      Receive notifications for new messages
+                    </p>
                   </div>
                   <Switch
                     checked={notifications}
                     onCheckedChange={setNotifications}
                   />
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium text-foreground">Email Updates</h3>
-                    <p className="text-xs text-muted-foreground">Get weekly summaries via email</p>
+                    <h3 className="text-foreground text-sm font-medium">
+                      Email Updates
+                    </h3>
+                    <p className="text-muted-foreground text-xs">
+                      Get weekly summaries via email
+                    </p>
                   </div>
                   <Switch defaultChecked={false} />
                 </div>
@@ -116,11 +151,11 @@ export default function SettingsPage() {
             </Card>
 
             {/* Appearance Section */}
-            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
+            <Card className="border-borderColor neo-pop-shadow bg-card border-2">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)] rounded-lg flex items-center justify-center">
-                    <Palette className="w-4 h-4 text-white" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-[hsl(var(--neo-purple))] to-[hsl(270,70%,55%)]">
+                    <Palette className="h-4 w-4 text-white" />
                   </div>
                   <span>Appearance</span>
                 </CardTitle>
@@ -128,27 +163,33 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium text-foreground">Theme</h3>
-                    <p className="text-xs text-muted-foreground">Switch between light and dark mode</p>
+                    <h3 className="text-foreground text-sm font-medium">
+                      Theme
+                    </h3>
+                    <p className="text-muted-foreground text-xs">
+                      Switch between light and dark mode
+                    </p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Sun className="w-4 h-4" />
+                    <Sun className="h-4 w-4" />
                     <Switch
                       checked={theme === "dark"}
-                      onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                      onCheckedChange={(checked) =>
+                        setTheme(checked ? "dark" : "light")
+                      }
                     />
-                    <Moon className="w-4 h-4" />
+                    <Moon className="h-4 w-4" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Privacy Section */}
-            <Card className="border-2 border-borderColor neo-pop-shadow bg-card">
+            <Card className="border-borderColor neo-pop-shadow bg-card border-2">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-linear-to-br from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)] rounded-lg flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-white" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-[hsl(var(--neo-orange))] to-[hsl(25,85%,50%)]">
+                    <Shield className="h-4 w-4 text-white" />
                   </div>
                   <span>Privacy & Security</span>
                 </CardTitle>
@@ -156,22 +197,32 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-medium text-foreground">Data Collection</h3>
-                    <p className="text-xs text-muted-foreground">Allow usage analytics</p>
+                    <h3 className="text-foreground text-sm font-medium">
+                      Data Collection
+                    </h3>
+                    <p className="text-muted-foreground text-xs">
+                      Allow usage analytics
+                    </p>
                   </div>
                   <Switch
                     checked={dataCollection}
                     onCheckedChange={setDataCollection}
                   />
                 </div>
-                
-                <div className="pt-4 space-y-3">
-                  <Button variant="outline" className="w-full justify-start border-2 neo-pop-shadow-sm">
-                    <Download className="w-4 h-4 mr-2" />
+
+                <div className="space-y-3 pt-4">
+                  <Button
+                    variant="outline"
+                    className="neo-pop-shadow-sm w-full justify-start border-2"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
                     Export My Data
                   </Button>
-                  <Button variant="outline" className="w-full justify-start text-red-600 hover:text-red-700 border-2 neo-pop-shadow-sm">
-                    <Trash2 className="w-4 h-4 mr-2" />
+                  <Button
+                    variant="outline"
+                    className="neo-pop-shadow-sm w-full justify-start border-2 text-red-600 hover:text-red-700"
+                  >
+                    <Trash2 className="mr-2 h-4 w-4" />
                     Delete Account
                   </Button>
                 </div>
@@ -179,25 +230,25 @@ export default function SettingsPage() {
             </Card>
 
             {/* Account Section */}
-            <Card className="border-2 border-borderColor neo-pop-shadow bg-card md:col-span-2">
+            <Card className="border-borderColor neo-pop-shadow bg-card border-2 md:col-span-2">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Account Plan</CardTitle>
-                  <span className="text-sm px-3 py-1 bg-secondary text-secondary-foreground rounded-full border">
+                  <span className="bg-secondary text-secondary-foreground rounded-full border px-3 py-1 text-sm">
                     Free
                   </span>
                 </div>
                 <CardDescription>
-                  Upgrade to Pro for unlimited conversations and advanced features.
+                  Upgrade to Pro for unlimited conversations and advanced
+                  features.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground neo-pop-shadow border-2 border-primary">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground neo-pop-shadow border-primary border-2">
                   Upgrade to Pro
                 </Button>
               </CardContent>
             </Card>
-
           </div>
         </div>
       </main>
