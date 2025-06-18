@@ -19,9 +19,9 @@ import type { ThreadCreatedEvent } from "~/shared-types/SSE";
 import { tryCatch } from "~/lib/utils";
 import promptLoader from "~/prompts/PromptLoader";
 import { fetchMutation } from "convex/nextjs";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { getMockChatModel, getMockTitleModel } from "./mock";
+import { getMockTitleModel } from "./mock";
 
 const titleGenerationPrompt = promptLoader.getPromptById("TITLE_GENERATOR");
 

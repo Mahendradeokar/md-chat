@@ -2,7 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { processDataStream } from "@ai-sdk/ui-utils";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 import { useConvex } from "convex/react";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";

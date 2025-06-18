@@ -15,7 +15,6 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ markdown }) => {
       const match = /language-(\w+)/.exec(className ?? "");
       return match ? (
         <SyntaxHighlighter
-          {...rest}
           ref={rest.ref as unknown as Ref<SyntaxHighlighter>}
           PreTag={(props) => (
             <div

@@ -5,12 +5,10 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Avatar, AvatarFallback } from "~/components/ui/avatar";
 import {
-  Plus,
   Search,
   Settings,
   MessageCircle,
   Lightbulb,
-  Code,
   BookOpen,
   ChevronRight,
   Palette,

@@ -8,10 +8,8 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import { ChevronDown, Check, Settings, TriangleAlertIcon } from "lucide-react";
-import { cn } from "~/lib/utils";
 import { type ModelSelectorProps, type ConfiguredProvider } from "./types";
 import { PROVIDERS, MODELS } from "./data";
-import { getModelStatus } from "./utils";
 import ApiKeyForm from "./api-key-form";
 import ModelList from "./model-list";
 import ProviderManagement from "./provider-management";
@@ -21,7 +19,6 @@ import { Ternary } from "../shared";
 export default function ModelSelector({
   selectedModel,
   onModelSelect,
-  className,
 }: ModelSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(false);
@@ -106,8 +103,6 @@ export default function ModelSelector({
       // Here you would typically update the API key in your state management
     }
   };
-
-  const status = getModelStatus(hasApiKey, selectedModel);
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>

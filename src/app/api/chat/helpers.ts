@@ -1,5 +1,5 @@
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 import type { messageSchema } from "convex/model/Message";
 import { fetchMutation } from "convex/nextjs";
 import { z } from "zod";
@@ -73,4 +73,3 @@ export const addAssistantMessage = async (
     { token: options.token },
   );
 };
-

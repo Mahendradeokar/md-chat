@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
-import { Plus, Paperclip, Globe, Send, ChevronDown } from "lucide-react";
+import { Plus, Send } from "lucide-react";
 import { useMDChat } from "~/hooks/use-chat";
 import { useRouter, usePathname } from "next/navigation";
 import { appendIdInUrl } from "~/lib/utils";

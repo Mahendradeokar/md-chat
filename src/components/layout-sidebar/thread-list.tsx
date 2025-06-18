@@ -8,7 +8,7 @@ import { Condition, Else, If } from "../shared";
 import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 
 const ThreadLoading = () => {
   return Array.from({ length: 3 }).map((_, index) => (
@@ -35,7 +35,6 @@ const EmptyState = () => (
 
 export default function ThreadList() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const threadList = useQuery(api.thread.getThreads, {}) ?? [];
 
   const params = useParams();
@@ -62,9 +61,9 @@ export default function ThreadList() {
       <ScrollArea className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         <div className="space-y-3">
           <Condition>
-            <If condition={isLoading}>
+            {/* <If condition={isLoading}>
               <ThreadLoading />
-            </If>
+            </If> */}
             <Else>
               {filteredThreads.length === 0 ? (
                 <EmptyState />

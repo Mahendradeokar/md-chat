@@ -3,7 +3,7 @@
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
-import { ApiKeyEditProps } from "./types";
+import { type ApiKeyEditProps } from "./types";
 
 export default function ApiKeyEdit({
   providerId,
