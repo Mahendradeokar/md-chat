@@ -93,7 +93,6 @@ export const getUserProviderKey = async (
     ),
   );
 
-  console.log("KEY", result)
   if (result.error || !result.data) {
     throw new Error(ERROR_CODE.NOT_FOUND);
   }

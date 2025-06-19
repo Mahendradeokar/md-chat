@@ -4,20 +4,26 @@ import { useState } from "react";
 import { ChevronRight, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import ThreadSearch from "./thread-search";
-import { Condition, Else } from "../shared";
-import { useQuery } from "convex/react";
+import { Condition, Else, If } from "../shared";
 import { useParams } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
 import { api } from "~/../convex/_generated/api";
+import { useQueryWithStatus } from "~/hooks/use-query-with-status";
 
-// const ThreadLoading = () => {
-//   return Array.from({ length: 3 }).map((_, index) => (
-//     <div key={index} className="space-y-2">
-//       <div className="from-muted/50 to-muted/30 h-4 w-3/4 animate-pulse rounded-full bg-gradient-to-r" />
-//       <div className="from-muted/30 to-muted/20 h-3 w-1/2 animate-pulse rounded-full bg-gradient-to-r" />
-//     </div>
-//   ));
-// };
+const ThreadLoading = () => {
+  return Array.from({ length: 8 }).map((_, index) => (
+    <div
+      key={index}
+      className="group bg-muted/30 relative mb-2 flex w-full items-center justify-between rounded-xl px-4 py-3 transition-all duration-300"
+    >
+      <div className="from-primary to-primary/60 absolute top-1/2 left-0 h-8 w-1 -translate-y-1/2 rounded-r-full bg-gradient-to-b opacity-30" />
+      <span className="min-w-0 flex-1">
+        <div className="from-muted/50 to-muted/30 h-4 w-3/4 animate-pulse rounded bg-gradient-to-r" />
+      </span>
+      <div className="from-muted/50 to-muted/30 ml-2 h-4 w-4 animate-pulse rounded-full bg-gradient-to-r" />
+    </div>
+  ));
+};
 
 const EmptyState = () => (
   <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -35,7 +41,8 @@ const EmptyState = () => (
 
 export default function ThreadList() {
   const [searchQuery, setSearchQuery] = useState("");
-  const threadList = useQuery(api.thread.getThreads, {}) ?? [];
+  const { data: threadList = [], isPending: isLoading } =
+    useQueryWithStatus(api.thread.getThreads, {}) ?? [];
 
   const params = useParams();
 
@@ -61,9 +68,9 @@ export default function ThreadList() {
       <ScrollArea className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
         <div className="space-y-3">
           <Condition>
-            {/* <If condition={isLoading}>
+            <If condition={isLoading}>
               <ThreadLoading />
-            </If> */}
+            </If>
             <Else>
               {filteredThreads.length === 0 ? (
                 <EmptyState />

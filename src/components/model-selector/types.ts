@@ -39,12 +39,6 @@ export interface ModelListProps {
   onModelSelect: (arg: ModelValue) => void;
 }
 
-export interface ProviderManagementProps {
-  onEditProvider: (providerId: string) => void;
-  onDeleteProvider: (providerId: string) => void;
-  onClose: () => void;
-}
-
 export interface ApiKeyEditProps {
   providerId: string;
   apiKey: string;

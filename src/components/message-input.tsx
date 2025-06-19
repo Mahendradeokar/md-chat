@@ -33,6 +33,7 @@ export default function MessageInput() {
     e.preventDefault();
     if (input.trim()) {
       handleSubmit(e);
+      debugger;
       if (!pathname.includes("conversation")) {
         router.push(appendIdInUrl(ROUTES_URL.CONVERSATION, threadId));
       }

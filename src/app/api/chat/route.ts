@@ -2,13 +2,11 @@ import {
   APICallError,
   createDataStreamResponse,
   generateText,
-  LoadAPIKeyError,
   streamText,
   type JSONValue,
 } from "ai";
 import {
   createOpenRouter,
-  openrouter,
   type OpenRouterProvider,
 } from "@openrouter/ai-sdk-provider";
 import { AVAILABLE_MODELS, PROVIDERS, SSE_EVENTS } from "~/constants";
@@ -81,7 +79,6 @@ const getTitleCreationPromise = async ({
 
 export async function POST(req: Request) {
   const body = (await req.json()) as unknown;
-  // console.log(JSON.stringify(body, null, 2));
 
   const validationResult = payloadSchema.safeParse(body);
   if (!validationResult.success) {

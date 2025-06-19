@@ -46,7 +46,6 @@ export function useSmoothStreamingText(
         const nextIndex = currentIndexRef.current + 1;
         const newText = fullTextRef.current[nextIndex];
 
-        console.log("STREAM-Next", newText);
         setDisplayedText((prev) => prev + " " + newText);
         currentIndexRef.current = nextIndex;
 
@@ -81,7 +80,6 @@ export function useSmoothStreamingText(
     setDisplayedText(streamingText);
   }, [streamingText, streamingMode, shouldStream, streamNext]);
 
-  console.log("STREAM-full", displayedText);
   // Cleanup on unmount
   useEffect(() => {
     return () => {

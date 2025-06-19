@@ -25,7 +25,6 @@ export async function tryCatch<T>(promise: Promise<T>): Promise<Result<T>> {
     const data = await promise;
     return { data };
   } catch (error) {
-    console.log("ERROR", error);
     return {
       error: error instanceof Error ? error : new Error(String(error)),
     };

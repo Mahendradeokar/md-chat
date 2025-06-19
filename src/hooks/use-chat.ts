@@ -75,8 +75,6 @@ export function useMDChat(options: UseChatWithUrlParamsOptions = {}) {
           }),
         );
 
-        logger.debug("Thread id is calling", threadId);
-
         if (results.error) {
           toast({
             title: "Woops!",
@@ -99,8 +97,6 @@ export function useMDChat(options: UseChatWithUrlParamsOptions = {}) {
       }
     })();
   }, [threadId, convex, setMessages]);
-
-  logger.debug("Chat", chat.messages);
 
   return {
     ...chat,

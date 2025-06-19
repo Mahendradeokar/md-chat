@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   AnthropicIcon,
   DeepseekIcon,
@@ -112,8 +113,9 @@ export const AVAILABLE_MODELS = {
 
 export function getDefaultModel(): { id: string; name: string } {
   return (
-    Object.values(AVAILABLE_MODELS).find((model: any) => model.default) ??
-    Object.values(AVAILABLE_MODELS)[0]!
+    Object.values(AVAILABLE_MODELS).find(
+      (model) => "default" in model && model.default,
+    ) ?? Object.values(AVAILABLE_MODELS)[0]!
   );
 }
 

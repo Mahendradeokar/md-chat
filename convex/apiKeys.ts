@@ -16,7 +16,6 @@ export const isApiKeysConfigured = zQuery({
     const userId = await User.ensureUserIdExists(ctx);
 
     const apiKeys = await APIKey.getUserApiKeys(ctx, { userId: userId });
-    console.log("apiKeys", apiKeys);
     return Boolean(Object.values(apiKeys?.provider ?? {}).length);
   },
 });
