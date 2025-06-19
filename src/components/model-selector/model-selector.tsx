@@ -12,7 +12,7 @@ import { type ModelSelectorProps, type ModelValue } from "./types";
 import ApiKeyFormEdit from "./api-key-form";
 import ModelList from "./model-list";
 import { Condition, Else, ElseIf, If, Loading, Ternary } from "../shared";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 import { useQueryWithStatus } from "~/hooks/use-query-with-status";
 
 export default function ModelSelector({

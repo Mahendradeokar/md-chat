@@ -5,7 +5,7 @@ import { Input } from "~/components/ui/input";
 import { AlertCircle, Eye, EyeOff } from "lucide-react";
 import { type ApiKeyCommonProps } from "./types";
 import Ternary from "../shared/ternary";
-import { api } from "convex/_generated/api";
+import { api } from "~/../convex/_generated/api";
 import { useState } from "react";
 import { toast } from "../ui/use-toast";
 import { Condition, Else, ElseIf, If } from "../shared";
