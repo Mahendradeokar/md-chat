@@ -10,12 +10,19 @@ import { appendIdInUrl } from "~/lib/utils";
 import { getDefaultModel, ROUTES_URL } from "~/constants";
 import { ModelSelector } from "./model-selector";
 import { EventService } from "~/lib/modules/EventService";
+import { useQueryWithStatus } from "~/hooks/use-query-with-status";
+import { api } from "~/../convex/_generated/api";
 
 export default function MessageInput() {
   const [selectedModel, setSelectedModel] = useState<{
     id: string;
     name: string;
   }>(getDefaultModel());
+
+  const { data: isApiConfigured } = useQueryWithStatus(
+    api.apiKeys.isApiKeysConfigured,
+    {},
+  );
 
   const { input, handleInputChange, handleSubmit, threadId, setInput } =
     useMDChat({
@@ -31,6 +38,11 @@ export default function MessageInput() {
 
   const handleMessageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isApiConfigured) {
+      return;
+    }
+
     if (input.trim()) {
       handleSubmit(e);
       debugger;
@@ -125,6 +137,7 @@ export default function MessageInput() {
 
               {/* Send button */}
               <Button
+                disabled={!isApiConfigured}
                 type="submit"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground ml-3 h-auto rounded-lg p-2 transition-all duration-150 hover:scale-105 active:scale-95"
               >
