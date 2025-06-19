@@ -126,12 +126,14 @@ export async function POST(req: Request) {
     token: userAuthToken,
   });
 
-  const titleCreationPromise = getTitleCreationPromise({
-    threadId,
-    userQuery: lastMessage.content,
-    token: userAuthToken,
-    modelProvider: openRouterInstance,
-  });
+  const titleCreationPromise = isFirstMessage
+    ? getTitleCreationPromise({
+        threadId,
+        userQuery: lastMessage.content,
+        token: userAuthToken,
+        modelProvider: openRouterInstance,
+      })
+    : Promise.resolve(null);
 
   return createDataStreamResponse({
     execute: async (dataStream) => {

@@ -5,6 +5,10 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  outputFileTracingIncludes: {
+    "api/chat": ["./src/prompts/**/*.md"],
+  },
+};
 
 export default config;
