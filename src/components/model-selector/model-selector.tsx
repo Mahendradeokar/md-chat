@@ -101,7 +101,6 @@ export default function ModelSelector({
 function ModelBody({
   selectedModel,
   hasApiKey,
-  onCancel,
   onModelSelect,
 }: ModelSelectorProps & {
   onCancel: () => void;
@@ -127,7 +126,12 @@ function ModelBody({
       {(() => {
         switch (currantView) {
           case "SET_API_KEY": {
-            return <ApiKeyFormEdit mode="ADD" onCancel={onCancel} />;
+            return (
+              <ApiKeyFormEdit
+                mode="ADD"
+                onCancel={() => setCurrantView("VIEW_MODEL_LIST")}
+              />
+            );
           }
 
           case "VIEW_MODEL_LIST":
