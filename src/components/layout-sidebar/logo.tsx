@@ -6,7 +6,21 @@ export default function Logo() {
   const { setTheme, theme } = useTheme();
   return (
     <div className="border-borderColor flex items-center justify-between border-b px-5 py-5">
-      <h1 className="text-foreground text-2xl font-bold">AUM</h1>
+      <div className="flex items-center space-x-1.5">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-5 w-5"
+        >
+          <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+        </svg>
+        <h1 className="text-foreground text-base font-bold">AUM</h1>
+      </div>
       <Button
         variant="ghost"
         size="sm"
