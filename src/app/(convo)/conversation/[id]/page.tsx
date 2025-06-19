@@ -1,7 +1,14 @@
 "use client";
 
 import { useMDChat as useMDChat } from "~/hooks/use-chat";
-import { Condition, Else, If, Ternary } from "~/components/shared";
+import {
+  AutoScroll,
+  Condition,
+  Else,
+  If,
+  Loading,
+  Ternary,
+} from "~/components/shared";
 import {
   AssistantMessage,
   ErrorMessage,
@@ -11,15 +18,12 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { ROUTES_URL } from "~/constants";
 import { generateUniqId } from "~/lib/utils";
-import { createLogger } from "~/lib/modules/Logger";
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
-
-const logger = createLogger("CONVERSATION_PAGE");
 
 export default function ConversationPage() {
   const router = useRouter();
   const params = useParams();
-  const { messages, error, reload } = useMDChat();
+  const { messages, error, reload, status } = useMDChat();
 
   useEffect(() => {
     const id = params?.id as string;
@@ -27,10 +31,6 @@ export default function ConversationPage() {
       router.push(ROUTES_URL.CHAT);
     }
   }, [params?.id, router]);
-
-  useEffect(() => {
-    logger.debug("Last MESSAGE", messages.at(-1));
-  }, [messages]);
 
   return (
     <>
@@ -47,17 +47,24 @@ export default function ConversationPage() {
                     <UserMessage {...message} />
                   </If>
                   <Else>
-                    <AssistantMessage
-                      {...message}
-                      shouldStream={shouldStream}
-                    />
+                    <AutoScroll autoScroll={index === messages.length - 1}>
+                      <AssistantMessage
+                        {...message}
+                        shouldStream={shouldStream}
+                      />
+                    </AutoScroll>
                   </Else>
                 </Condition>
               </div>
             );
           })}
+          <Ternary condition={status === "submitted"}>
+            <AutoScroll>
+              <Loading className="justify-start" />
+            </AutoScroll>
+          </Ternary>
           <Ternary condition={Boolean(error)}>
-            <ErrorMessage onRetry={reload} />
+            <ErrorMessage onRetry={reload} error={error} />
           </Ternary>
         </div>
         <ScrollBar />

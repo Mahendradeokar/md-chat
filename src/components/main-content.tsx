@@ -1,5 +1,9 @@
+"use client";
+
 import { Button } from "~/components/ui/button";
 import { Star, Compass, Code, GraduationCap } from "lucide-react";
+import { useUser } from "~/hooks/use-user";
+import { EventService } from "~/lib/modules/EventService";
 
 const suggestedPrompts = [
   {
@@ -37,15 +41,19 @@ const suggestedPrompts = [
 ];
 
 export default function MainContent() {
+  const { user } = useUser();
   return (
     <>
       {/* Chat Area */}
-      <div className="flex flex-1 flex-col items-center justify-center px-8 py-8">
+      <div className="flex flex-1 flex-col items-center justify-end px-8 py-8">
         {/* Welcome Greeting */}
         <div className="animate-fade-in mb-12 text-center">
           <h2 className="text-foreground mb-2 text-3xl font-bold">
             How can I help you,{" "}
-            <span className="text-[hsl(var(--neo-emerald))]">MD</span>?
+            <span className="text-[hsl(var(--neo-emerald))]">
+              {user.firstName}
+            </span>
+            ?
           </h2>
         </div>
 
@@ -58,6 +66,12 @@ export default function MainContent() {
                 key={prompt.id}
                 variant="ghost"
                 className="group bg-card dark:bg-card border-borderColor neo-pop-shadow hover:neo-pop-shadow-lg h-auto justify-start rounded-xl border-2 p-6 text-left transition-all duration-150 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() =>
+                  EventService.broadcast(
+                    EventService.EVENTS.SUGGESTED_PROMPT_CLICKED,
+                    prompt.title,
+                  )
+                }
               >
                 <div className="flex items-start space-x-4">
                   <div

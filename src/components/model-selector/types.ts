@@ -10,16 +10,14 @@ export interface Model {
   description: string;
 }
 
-export interface ConfiguredProvider {
+export interface ModelValue {
   id: string;
   name: string;
-  icon: string;
-  hasKey: boolean;
 }
 
 export interface ModelSelectorProps {
-  selectedModel?: string;
-  onModelSelect: (model: string) => void;
+  selectedModel?: ModelValue;
+  onModelSelect: (arg: ModelValue) => void;
   className?: string;
 }
 
@@ -29,27 +27,19 @@ export interface ModelStatus {
   className: string;
 }
 
-export interface ApiKeyFormProps {
-  selectedProvider: string;
-  apiKey: string;
-  showApiKey: boolean;
-  onProviderSelect: (providerId: string) => void;
-  onApiKeyChange: (key: string) => void;
-  onShowApiKeyToggle: () => void;
-  onSave: () => void;
+export type ApiKeyMode = "ADD" | "EDIT";
+
+export interface ApiKeyCommonProps {
+  mode: ApiKeyMode;
   onCancel: () => void;
-  providers: Provider[];
 }
 
 export interface ModelListProps {
-  models: Record<string, Model[]>;
-  selectedModel?: string;
-  onModelSelect: (modelId: string) => void;
-  providers: Provider[];
+  selectedModel?: ModelValue;
+  onModelSelect: (arg: ModelValue) => void;
 }
 
 export interface ProviderManagementProps {
-  configuredProviders: ConfiguredProvider[];
   onEditProvider: (providerId: string) => void;
   onDeleteProvider: (providerId: string) => void;
   onClose: () => void;

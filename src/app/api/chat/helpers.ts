@@ -1,9 +1,11 @@
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
 import { api } from "~/../convex/_generated/api";
 import type { messageSchema } from "convex/model/Message";
-import { fetchMutation } from "convex/nextjs";
+import { fetchMutation, fetchQuery } from "convex/nextjs";
 import { z } from "zod";
 import { generateUniqId, tryCatch } from "~/lib/utils";
+import { ERROR_CODE } from "~/constants/error-codes";
+import { AVAILABLE_MODEL_IDS } from "~/constants";
 
 export const payloadSchema = z.object({
   messages: z
@@ -16,6 +18,7 @@ export const payloadSchema = z.object({
     )
     .min(1, "Messages array cannot be empty"),
   id: z.string(),
+  modelId: z.enum(AVAILABLE_MODEL_IDS as [string, ...string[]]),
 });
 
 export type Payload = z.infer<typeof payloadSchema>;
@@ -72,4 +75,43 @@ export const addAssistantMessage = async (
     },
     { token: options.token },
   );
+};
+
+export const getUserProviderKey = async (
+  provider: string,
+  options: {
+    token: string | undefined;
+  },
+) => {
+  const result = await tryCatch(
+    fetchQuery(
+      api.apiKeys.getApiKeys,
+      {},
+      {
+        token: options.token,
+      },
+    ),
+  );
+
+  console.log("KEY", result)
+  if (result.error || !result.data) {
+    throw new Error(ERROR_CODE.NOT_FOUND);
+  }
+
+  if (!result.data?.[provider]) {
+    throw new Error(ERROR_CODE.NOT_FOUND);
+  }
+
+  return result.data?.[provider];
+};
+
+export const sanitizeUserQuery = (query: string): string => {
+  const sanitized = query.trim().replace(/\s+/g, " ");
+  const MAX_LENGTH = 200;
+
+  if (sanitized.length > MAX_LENGTH) {
+    return `${sanitized.slice(0, MAX_LENGTH)}... (truncated)`;
+  }
+
+  return sanitized;
 };

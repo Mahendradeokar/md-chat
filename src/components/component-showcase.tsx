@@ -56,14 +56,14 @@ export default function ComponentShowcase() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   return (
-    <div className="min-h-screen overflow-auto bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="bg-background min-h-screen overflow-auto p-6">
+      <div className="mx-auto max-w-7xl space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="space-y-4 text-center">
           <h1 className="text-4xl font-bold tracking-tight">
-            T3.chat Neo-Pop Components
+            AUM Neo-Pop Components
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-muted-foreground text-xl">
             A comprehensive showcase of our minimalist design system
           </p>
           <div className="flex justify-center gap-2">
@@ -74,7 +74,7 @@ export default function ComponentShowcase() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {/* Buttons Card */}
           <Card>
             <CardHeader>
@@ -162,8 +162,8 @@ export default function ComponentShowcase() {
                 </Avatar>
                 <div>
                   <h3 className="font-semibold">John Doe</h3>
-                  <p className="text-sm text-muted-foreground">Premium User</p>
-                  <div className="flex gap-1 mt-1">
+                  <p className="text-muted-foreground text-sm">Premium User</p>
+                  <div className="mt-1 flex gap-1">
                     <Badge variant="secondary" className="text-xs">
                       Pro
                     </Badge>
@@ -177,15 +177,15 @@ export default function ComponentShowcase() {
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
                   <p className="font-semibold">127</p>
-                  <p className="text-xs text-muted-foreground">Chats</p>
+                  <p className="text-muted-foreground text-xs">Chats</p>
                 </div>
                 <div>
                   <p className="font-semibold">8.9k</p>
-                  <p className="text-xs text-muted-foreground">Messages</p>
+                  <p className="text-muted-foreground text-xs">Messages</p>
                 </div>
                 <div>
                   <p className="font-semibold">94%</p>
-                  <p className="text-xs text-muted-foreground">Satisfaction</p>
+                  <p className="text-muted-foreground text-xs">Satisfaction</p>
                 </div>
               </div>
             </CardContent>
@@ -209,7 +209,7 @@ export default function ComponentShowcase() {
                     <Bell className="h-4 w-4" />
                     Notifications
                   </Label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     Receive push notifications
                   </p>
                 </div>
@@ -229,7 +229,7 @@ export default function ComponentShowcase() {
                     )}
                     Dark Mode
                   </Label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     Toggle dark theme
                   </p>
                 </div>
@@ -278,16 +278,16 @@ export default function ComponentShowcase() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-2">
-                <div className="h-12 bg-primary border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-primary-foreground font-semibold cursor-pointer">
+                <div className="bg-primary border-borderColor neo-pop-shadow-sm hover:neo-pop-shadow text-primary-foreground flex h-12 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition-all duration-200">
                   Primary
                 </div>
-                <div className="h-12 bg-secondary border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-secondary-foreground font-semibold cursor-pointer">
+                <div className="bg-secondary border-borderColor neo-pop-shadow-sm hover:neo-pop-shadow text-secondary-foreground flex h-12 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition-all duration-200">
                   Secondary
                 </div>
-                <div className="h-12 bg-accent border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-accent-foreground font-semibold cursor-pointer">
+                <div className="bg-accent border-borderColor neo-pop-shadow-sm hover:neo-pop-shadow text-accent-foreground flex h-12 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition-all duration-200">
                   Accent
                 </div>
-                <div className="h-12 bg-muted border-2 border-borderColor rounded-lg neo-pop-shadow-sm hover:neo-pop-shadow transition-all duration-200 flex items-center justify-center text-muted-foreground font-semibold cursor-pointer">
+                <div className="bg-muted border-borderColor neo-pop-shadow-sm hover:neo-pop-shadow text-muted-foreground flex h-12 cursor-pointer items-center justify-center rounded-lg border-2 font-semibold transition-all duration-200">
                   Muted
                 </div>
               </div>
@@ -297,11 +297,11 @@ export default function ComponentShowcase() {
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 fill-primary text-primary"
+                      className="fill-primary text-primary h-5 w-5"
                     />
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Perfect rating showcase
                 </p>
               </div>
@@ -347,13 +347,13 @@ export default function ComponentShowcase() {
               <div className="grid grid-cols-2 gap-2">
                 <Button
                   variant="outline"
-                  className="h-16 hover:scale-105 transition-transform duration-200"
+                  className="h-16 transition-transform duration-200 hover:scale-105"
                 >
                   Hover Me
                 </Button>
                 <Button
                   variant="secondary"
-                  className="h-16 hover:rotate-3 transition-transform duration-200"
+                  className="h-16 transition-transform duration-200 hover:rotate-3"
                 >
                   Tilt Effect
                 </Button>
@@ -362,18 +362,18 @@ export default function ComponentShowcase() {
               <div className="space-y-2">
                 <p className="text-sm font-medium">Interaction States:</p>
                 <div className="flex gap-2">
-                  <Badge className="cursor-pointer hover:scale-110 transition-transform">
+                  <Badge className="cursor-pointer transition-transform hover:scale-110">
                     Active
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="cursor-pointer hover:scale-110 transition-transform"
+                    className="cursor-pointer transition-transform hover:scale-110"
                   >
                     Hover
                   </Badge>
                   <Badge
                     variant="outline"
-                    className="cursor-pointer hover:scale-110 transition-transform"
+                    className="cursor-pointer transition-transform hover:scale-110"
                   >
                     Focus
                   </Badge>
@@ -382,11 +382,11 @@ export default function ComponentShowcase() {
 
               <Separator />
 
-              <div className="text-center space-y-2">
-                <p className="text-sm text-muted-foreground">
+              <div className="space-y-2 text-center">
+                <p className="text-muted-foreground text-sm">
                   All components feature consistent neo-pop styling with:
                 </p>
-                <ul className="text-xs text-muted-foreground space-y-1">
+                <ul className="text-muted-foreground space-y-1 text-xs">
                   <li>• 2px borders for definition</li>
                   <li>• Subtle shadow effects</li>
                   <li>• Smooth hover transitions</li>
@@ -398,10 +398,10 @@ export default function ComponentShowcase() {
         </div>
 
         {/* Footer */}
-        <div className="text-center text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-center text-sm">
           <p>
-            T3.chat Neo-Pop Design System • Built with shadcn/ui • Inspired by
-            Jony Ive & Dieter Rams
+            AUM Neo-Pop Design System • Built with shadcn/ui • Inspired by Jony
+            Ive & Dieter Rams
           </p>
         </div>
       </div>

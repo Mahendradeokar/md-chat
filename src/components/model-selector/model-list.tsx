@@ -3,49 +3,47 @@
 import { Check } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { type ModelListProps } from "./types";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import { AVAILABLE_MODELS_LIST } from "~/constants";
 
 export default function ModelList({
-  models,
   selectedModel,
   onModelSelect,
-  providers,
 }: ModelListProps) {
   return (
-    <div className="flex-1 space-y-4 overflow-y-auto">
-      {Object.entries(models).map(([providerId, modelList]) => (
-        <div key={providerId} className="space-y-3">
-          <div className="flex items-center space-x-2">
-            <span className="text-foreground text-sm font-medium">
-              {providers.find((p) => p.id === providerId)?.name}
-            </span>
-          </div>
-
-          <div className="space-y-2">
-            {modelList.map((model) => (
+    <ScrollArea className="max-h-80">
+      <div className="flex-1 space-y-2 overflow-y-auto">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {AVAILABLE_MODELS_LIST.map((model) => {
+            const Icon = model.icon;
+            return (
               <button
                 key={model.id}
-                onClick={() => onModelSelect(model.id)}
+                onClick={() => onModelSelect(model)}
                 className={cn(
-                  "w-full rounded-lg p-3 text-left transition-colors duration-150",
-                  selectedModel === model.id
-                    ? "bg-primary text-primary-foreground"
-                    : "hover:bg-accent border-borderColor border",
+                  "border-borderColor bg-background hover:bg-accent flex min-h-28 w-full flex-col items-center justify-center rounded-lg border p-2 shadow-sm transition-colors duration-150",
+                  selectedModel?.id === model.id
+                    ? "ring-primary bg-primary/10 ring-2"
+                    : "",
                 )}
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-medium">{model.name}</div>
-                    <div className="mt-1 text-xs opacity-80">
-                      {model.description}
-                    </div>
+                <div className="flex w-full flex-col items-center justify-around gap-1">
+                  <div className="mb-1 flex-shrink-0">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  {selectedModel === model.id && <Check className="h-4 w-4" />}
+                  <div className="flex w-full flex-col items-center">
+                    <div className="text-xs font-semibold">{model.name}</div>
+                  </div>
+                  {selectedModel?.id === model.id && (
+                    <Check className="text-primary mt-1 h-4 w-4" />
+                  )}
                 </div>
               </button>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      ))}
-    </div>
+      </div>
+      <ScrollBar orientation="vertical" className="visible opacity-100" />
+    </ScrollArea>
   );
 }

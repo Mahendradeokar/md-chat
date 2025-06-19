@@ -1,11 +1,17 @@
 import {
+  APICallError,
   createDataStreamResponse,
   generateText,
+  LoadAPIKeyError,
   streamText,
   type JSONValue,
 } from "ai";
-import { createOpenRouter } from "@openrouter/ai-sdk-provider";
-import { AVAILABLE_MODELS, SSE_EVENTS } from "~/constants";
+import {
+  createOpenRouter,
+  openrouter,
+  type OpenRouterProvider,
+} from "@openrouter/ai-sdk-provider";
+import { AVAILABLE_MODELS, PROVIDERS, SSE_EVENTS } from "~/constants";
 import { after } from "next/server";
 import { createLogger } from "~/lib/modules/Logger";
 import { formatZodErrors } from "~/lib/zod-error";
@@ -13,7 +19,9 @@ import {
   addAssistantMessage,
   addUserMessage,
   ensureTheadCreated,
+  getUserProviderKey,
   payloadSchema,
+  sanitizeUserQuery,
 } from "./helpers";
 import type { ThreadCreatedEvent } from "~/shared-types/SSE";
 import { tryCatch } from "~/lib/utils";
@@ -28,35 +36,22 @@ const titleGenerationPrompt = promptLoader.getPromptById("TITLE_GENERATOR");
 export const maxDuration = 60;
 const logger = createLogger("CHAT_API");
 
-const openRouter = createOpenRouter({
-  apiKey: process.env.OPEN_ROUTER_KEY,
-});
-
-const sanitizeUserQuery = (query: string): string => {
-  const sanitized = query.trim().replace(/\s+/g, " ");
-  const MAX_LENGTH = 200;
-
-  if (sanitized.length > MAX_LENGTH) {
-    return `${sanitized.slice(0, MAX_LENGTH)}... (truncated)`;
-  }
-
-  return sanitized;
-};
-
 const getTitleCreationPromise = async ({
   threadId,
   userQuery,
   token,
+  modelProvider,
 }: {
   threadId: string;
   userQuery: string;
   token: string | undefined;
+  modelProvider: OpenRouterProvider;
 }) => {
   const sanitizedQuery = sanitizeUserQuery(userQuery);
 
   const result = await tryCatch(
     generateText({
-      model: openRouter(AVAILABLE_MODELS.META_LLAMA_3_3_B_INSTRUCT.id),
+      model: modelProvider(AVAILABLE_MODELS.META_LLAMA_3_3_8B_INSTRUCT_FREE.id),
       // model: getMockTitleModel(),
       maxTokens: 20,
       system: titleGenerationPrompt.content,
@@ -65,7 +60,6 @@ const getTitleCreationPromise = async ({
     }),
   );
 
-  logger.debug("TITLE RESULT", JSON.stringify(result, null, 2));
   if (result.error) {
     logger.error("TITLE_CREATE", result.error?.message);
     return null;
@@ -94,23 +88,41 @@ export async function POST(req: Request) {
     const [errorString, { fieldErrors, formErrors }] = formatZodErrors(
       validationResult.error,
     );
-    logger.debug(
-      "validation",
-      JSON.stringify(formatZodErrors(validationResult.error), null, 2),
-    );
     return Response.json(
       { error: errorString, data: { formErrors, fieldErrors } },
       { status: 400, statusText: "Bad Request" },
     );
   }
 
-  const { messages, id: threadId } = validationResult.data;
+  const { messages, id: threadId, modelId } = validationResult.data;
   const userAuthToken = await convexAuthNextjsToken();
 
-  const errorResponse = await ensureTheadCreated(threadId);
-  if (errorResponse) {
-    return errorResponse;
+  const isFirstMessage = messages?.length === 1;
+  if (isFirstMessage) {
+    const errorResponse = await ensureTheadCreated(threadId);
+    if (errorResponse) {
+      return errorResponse;
+    }
   }
+
+  const { data: providerKey, error } = await tryCatch(
+    getUserProviderKey(PROVIDERS.OPENROUTER, {
+      token: userAuthToken,
+    }),
+  );
+
+  if (error) {
+    {
+      return Response.json(
+        { error: error.message },
+        { status: 400, statusText: "Bad Request" },
+      );
+    }
+  }
+
+  const openRouterInstance = createOpenRouter({
+    apiKey: providerKey,
+  });
 
   const lastMessage = messages[messages.length - 1]!;
   const addUserMessagePromise = addUserMessage(threadId, lastMessage, {
@@ -121,6 +133,7 @@ export async function POST(req: Request) {
     threadId,
     userQuery: lastMessage.content,
     token: userAuthToken,
+    modelProvider: openRouterInstance,
   });
 
   return createDataStreamResponse({
@@ -134,7 +147,7 @@ export async function POST(req: Request) {
       dataStream.writeData(threadCreatedEvent as unknown as JSONValue);
 
       const result = streamText({
-        model: openRouter(AVAILABLE_MODELS.META_LLAMA_3_3_B_INSTRUCT.id),
+        model: openRouterInstance(modelId),
         // model: getMockChatModel(),
         maxTokens: 10000,
         messages: [
@@ -144,19 +157,8 @@ export async function POST(req: Request) {
           },
           ...messages,
         ],
-        onChunk: (chunks) => {
-          logger.debug("CHUCKS", chunks);
-        },
-        // onError: ({ error }) => {
-        //   const modelFailedEvent: AIModelFailedEvent = {
-        //     type: SSE_EVENTS.AI_MODEL_FAILED,
-        //     data: {
-        //       error: isProduction()
-        //         ? "Failed to fulfill the request. Please try again later."
-        //         : JSON.stringify(error, null, 2),
-        //     },
-        //   };
-        //   dataStream.writeData(modelFailedEvent as unknown as JSONValue);
+        // onChunk: (chunks) => {
+        //   logger.debug("CHUCKS", chunks);
         // },
       });
 
@@ -222,6 +224,9 @@ export async function POST(req: Request) {
     },
     onError: (error) => {
       logger.error("[ERROR_API]", error);
+      if (APICallError.isInstance(error) && error.statusCode === 401) {
+        return "Unable to call the API with your API key. Please check your API key or add a new one.";
+      }
       return error instanceof Error ? error.message : String(error);
     },
     headers: {

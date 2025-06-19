@@ -1,8 +1,9 @@
 import { zid, zMutation, zQuery } from "./lib/utils";
 import User from "./model/Users";
 import Message, { messageSchema } from "./model/Message";
-import { ERROR_CODE } from "../src/constants";
+import { ERROR_CODE } from "../src/constants/error-codes";
 import { z } from "zod";
+import { ConvexError } from "convex/values";
 
 export const updateMessage = zMutation({
   args: messageSchema
@@ -19,13 +20,13 @@ export const updateMessage = zMutation({
 
     if (existingMessage) {
       if (existingMessage.userId !== userId) {
-        throw new Error(ERROR_CODE.UN_AUTHORIZED);
-      } 
+        throw new ConvexError(ERROR_CODE.UN_AUTHORIZED);
+      }
 
       return await ctx.db.patch(message._id!, message);
     }
-    
-    throw new Error(ERROR_CODE.NOT_FOUND);
+
+    throw new ConvexError(ERROR_CODE.NOT_FOUND);
   },
 });
 
@@ -42,7 +43,7 @@ export const createMessage = zMutation({
     });
 
     if (existingMessageId) {
-      throw new Error(ERROR_CODE.DUPLICATE_RESOURCE);
+      throw new ConvexError(ERROR_CODE.DUPLICATE_RESOURCE);
     }
 
     // Create new message

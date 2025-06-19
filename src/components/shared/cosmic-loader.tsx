@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -6,9 +8,9 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { cn } from "~/lib/utils";
 import { Loading } from "./loading";
+import { useRouter } from "next/navigation";
 
 interface CosmicLoaderProps {
   title?: string;

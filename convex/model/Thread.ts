@@ -2,7 +2,8 @@ import { type MutationCtx, type QueryCtx } from "../_generated/server";
 import { z } from "zod";
 import { zid } from "convex-helpers/server/zod";
 import { createLogger } from "../../src/lib/modules/Logger";
-import { ERROR_CODE } from "../../src/constants";
+import { ERROR_CODE } from "../../src/constants/error-codes";
+import { ConvexError } from "convex/values";
 
 const logger = createLogger("CONVEX_THREAD_MODEL");
 
@@ -43,7 +44,7 @@ class ThreadModel {
         .unique();
 
       if (!thread) {
-        throw new Error(ERROR_CODE.NOT_FOUND);
+        throw new ConvexError(ERROR_CODE.NOT_FOUND);
       }
 
       return thread;

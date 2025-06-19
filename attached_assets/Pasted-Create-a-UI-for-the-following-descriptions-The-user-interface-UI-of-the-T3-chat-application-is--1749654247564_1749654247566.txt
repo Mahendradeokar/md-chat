@@ -1,6 +1,6 @@
 Create a UI for the following descriptions
 
-The user interface (UI) of the T3.chat application is designed to provide a seamless and engaging conversational experience between the user and the chatbot. It features a clean, minimalistic layout divided into two main sections: a left sidebar for navigation and a main content area for interaction. The design emphasizes usability with a modern aesthetic. Below is a detailed explanation of the UI, breaking down its components and their functionalities.
+The user interface (UI) of the AUM application is designed to provide a seamless and engaging conversational experience between the user and the chatbot. It features a clean, minimalistic layout divided into two main sections: a left sidebar for navigation and a main content area for interaction. The design emphasizes usability with a modern aesthetic. Below is a detailed explanation of the UI, breaking down its components and their functionalities.
 
 ---
 
@@ -17,7 +17,7 @@ This division ensures a clear separation between navigation and interaction, mak
 The left sidebar contains several key elements for managing conversations and user information.
 
 #### 1. Header Section
-- **Application Title:** At the top, "T3.chat" is displayed in bold black text, establishing the brand identity.
+- **Application Title:** At the top, "AUM" is displayed in bold black text, establishing the brand identity.
 - **"New Chat" Button:** Below the title, a button with labeled "New Chat" allows users to initiate a new conversation thread with a single click.
 
 #### 2. Search Bar
@@ -75,7 +75,7 @@ like ChatGpt 4.1 mistra and grok and others...
 ---
 
 ### Summary
-The T3.chat UI combines a well-organized layout with thoughtful design choices to create a user-friendly conversational platform. The left sidebar simplifies navigation with tools like the "New Chat" button, search bar, and thread list, while the main content area fosters engagement through a personalized greeting, helpful prompts, and an intuitive message input system. Together, these elements deliver a seamless experience, balancing functionality with a clean, modern aesthetic.
+The AUM UI combines a well-organized layout with thoughtful design choices to create a user-friendly conversational platform. The left sidebar simplifies navigation with tools like the "New Chat" button, search bar, and thread list, while the main content area fosters engagement through a personalized greeting, helpful prompts, and an intuitive message input system. Together, these elements deliver a seamless experience, balancing functionality with a clean, modern aesthetic.
 
 Create the UI/UX from the lens of John ive and dieter rams. Before implementing think how they would have design this. 
 

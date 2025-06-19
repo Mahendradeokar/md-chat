@@ -2,6 +2,7 @@ import { z } from "zod";
 import { zMutation, zQuery } from "./lib/utils";
 import User from "./model/Users";
 import Thread, { threadSchema } from "./model/Thread";
+import { ConvexError } from "convex/values";
 
 export const createThread = zMutation({
   args: {
@@ -35,11 +36,13 @@ export const updateThread = zMutation({
     const thread = await Thread.getThreadById(ctx, { threadId });
 
     if (!thread) {
-      throw new Error("Thread not found");
+      throw new ConvexError("Thread not found");
     }
 
     if (thread.userId !== userId) {
-      throw new Error("Unauthorized: You can only update your own threads");
+      throw new ConvexError(
+        "Unauthorized: You can only update your own threads",
+      );
     }
 
     await ctx.db.patch(thread._id, { ...restUpdate });

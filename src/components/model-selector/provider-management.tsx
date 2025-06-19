@@ -59,7 +59,7 @@ export default function ProviderManagement({
           </div>
         </div>
 
-        <div className="mt-auto flex space-x-3">
+        <div className="mt-auto flex">
           <Button
             variant="outline"
             size="sm"

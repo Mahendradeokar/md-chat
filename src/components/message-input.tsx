@@ -1,19 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
 import { Plus, Send } from "lucide-react";
 import { useMDChat } from "~/hooks/use-chat";
 import { useRouter, usePathname } from "next/navigation";
 import { appendIdInUrl } from "~/lib/utils";
-import { ROUTES_URL } from "~/constants";
+import { getDefaultModel, ROUTES_URL } from "~/constants";
 import { ModelSelector } from "./model-selector";
+import { EventService } from "~/lib/modules/EventService";
 
 export default function MessageInput() {
-  const { input, handleInputChange, handleSubmit, threadId } = useMDChat();
+  const [selectedModel, setSelectedModel] = useState<{
+    id: string;
+    name: string;
+  }>(getDefaultModel());
 
-  const [selectedModel, setSelectedModel] = useState("Gemini 2.0 Flash");
+  const { input, handleInputChange, handleSubmit, threadId, setInput } =
+    useMDChat({
+      chatOptions: {
+        body: {
+          modelId: selectedModel.id,
+        },
+      },
+    });
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -34,9 +46,19 @@ export default function MessageInput() {
     }
   };
 
-  const handleModelSelect = (model: string) => {
+  const handleModelSelect = (model: { id: string; name: string }) => {
     setSelectedModel(model);
   };
+
+  useEffect(() => {
+    const unsubscribe = EventService.listen<string>(
+      EventService.EVENTS.SUGGESTED_PROMPT_CLICKED,
+      (prompt) => {
+        setInput(prompt);
+      },
+    );
+    return () => unsubscribe();
+  }, [setInput]);
 
   return (
     <div className="bg-background px-6 pb-6">
@@ -44,7 +66,7 @@ export default function MessageInput() {
         {/* New Chat Button - positioned at top right of input area */}
         <div className="absolute -top-12 right-0 z-10">
           <Button
-            variant="ghost"
+            variant="outline"
             className="bg-background/80 neo-shadow rounded-full px-4 py-2 text-sm font-medium text-[hsl(var(--neo-gray-700))] backdrop-blur-sm transition-all duration-150 hover:scale-105 hover:bg-[hsl(var(--neo-gray-100))] active:scale-95"
             onClick={() => router.push(ROUTES_URL.CHAT)}
           >

@@ -1,8 +1,9 @@
 import { Button } from "~/components/ui/button";
-import { Copy, RefreshCw } from "lucide-react";
+import { Check, Copy, RefreshCw } from "lucide-react";
 import type { Message } from "@ai-sdk/react";
 import { useState } from "react";
 import { MarkdownView } from "./markdown-view";
+import { isProduction } from "~/lib/utils";
 // import { createLogger } from "~/lib/modules/Logger";
 // import { useSmoothStreamingText } from "~/hooks/use-streaming-text";
 
@@ -43,23 +44,26 @@ export const AssistantMessage = ({
 
   // logger.debug("Streaming data", shouldStream);
 
+  const hasContent = typeof content === "string" && content.trim().length > 0;
+
   return (
     <div className="flex items-start space-x-4">
       <div className="bg-background group relative w-[90%] rounded-2xl rounded-tl-md px-4 py-3">
         <MarkdownView markdown={content} />
-        <div className="text-muted-foreground mt-2 flex items-center text-xs">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => copyToClipboard(content, id)}
-            className="text-muted-foreground hover:text-foreground mr-2 h-auto w-auto p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-          >
-            <Copy className="h-3 w-3" />
-          </Button>
-        </div>
-        {copiedId === id && (
-          <div className="bg-popover text-popover-foreground animate-fade-in absolute top-2 right-0 rounded border px-2 py-1 text-xs">
-            Copied!
+        {hasContent && (
+          <div className="text-muted-foreground mt-2 flex items-center text-xs">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground mr-2 h-auto w-auto p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              onClick={() => copyToClipboard(content, id)}
+            >
+              {copiedId === id ? (
+                <Check className="h-3 w-3 text-green-500" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+            </Button>
           </div>
         )}
       </div>
@@ -67,12 +71,31 @@ export const AssistantMessage = ({
   );
 };
 
-export const ErrorMessage = ({ onRetry }: { onRetry: () => void }) => {
+const parseErrorMessage = (message: string) => {
+  try {
+    const errorObject = JSON.parse(message) as Record<string, string>;
+    return errorObject.error ?? errorObject.message ?? message;
+  } catch {
+    return message;
+  }
+};
+export const ErrorMessage = ({
+  onRetry,
+  error,
+}: {
+  onRetry: () => void;
+  error: Error | undefined;
+}) => {
+  const showError =
+    !isProduction() && error
+      ? parseErrorMessage(error.message || String(error))
+      : "Something went wrong while generating the response. Please retry again";
+
   return (
     <div className="flex items-start space-x-4">
-      <div className="bg-destructive/10 group relative max-w-[70%] rounded-2xl rounded-tl-md px-4 py-3">
-        <p className="text-destructive text-sm leading-relaxed">
-          Something went wrong while generating the response. Please retry again
+      <div className="bg-destructive/10 dark:bg-destructive/10 dark:border-destructive/100 group relative max-w-[70%] rounded-2xl rounded-tl-md px-4 py-3 dark:border-2">
+        <p className="text-destructive/100 text-sm leading-relaxed">
+          {showError}
         </p>
         <div className="mt-4 flex items-center">
           <Button
