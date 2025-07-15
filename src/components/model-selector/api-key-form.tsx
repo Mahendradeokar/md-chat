@@ -2,7 +2,7 @@
 
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { AlertCircle, Eye, EyeOff } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Info } from "lucide-react";
 import { type ApiKeyCommonProps } from "./types";
 import Ternary from "../shared/ternary";
 import { api } from "~/../convex/_generated/api";
@@ -26,6 +26,7 @@ export default function ApiKeyFormEdit({ mode, onCancel }: ApiKeyCommonProps) {
         description: "Please enter a valid API key (at least 10 characters).",
         variant: "destructive",
       });
+      return;
     }
     setIsSubmitting(true);
     try {
@@ -97,6 +98,13 @@ export default function ApiKeyFormEdit({ mode, onCancel }: ApiKeyCommonProps) {
               </Button>
             </div>
           </div>
+        </div>
+        <div className="text-muted-foreground flex items-center space-x-2 text-sm">
+          <Info className="h-4 w-4" />
+          <span>
+            If you don&apos;t provide an API key, the default free model will be
+            used.
+          </span>
         </div>
         <div className="mt-auto flex space-x-3">
           <Ternary condition={mode === "EDIT"}>

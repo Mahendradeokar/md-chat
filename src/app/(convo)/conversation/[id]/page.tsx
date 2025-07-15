@@ -34,7 +34,7 @@ export default function ConversationPage() {
 
   return (
     <>
-      <ScrollArea className="flex-1 overflow-y-auto px-8 py-6">
+      <div className="flex-1 overflow-y-auto px-8 py-6">
         <div className="mx-auto my-12 max-w-4xl space-y-6">
           {messages?.map((message, index) => {
             const isLastMessage = index === messages.length - 1;
@@ -47,28 +47,26 @@ export default function ConversationPage() {
                     <UserMessage {...message} />
                   </If>
                   <Else>
-                    <AutoScroll autoScroll={index === messages.length - 1}>
-                      <AssistantMessage
-                        {...message}
-                        shouldStream={shouldStream}
-                      />
-                    </AutoScroll>
+                    <AssistantMessage
+                      {...message}
+                      shouldStream={shouldStream}
+                    />
                   </Else>
                 </Condition>
               </div>
             );
           })}
           <Ternary condition={status === "submitted"}>
-            <AutoScroll>
-              <Loading className="justify-start" />
-            </AutoScroll>
+            {/* <AutoScroll> */}
+            <Loading className="justify-start" />
+            {/* </AutoScroll> */}
           </Ternary>
           <Ternary condition={Boolean(error)}>
             <ErrorMessage onRetry={reload} error={error} />
           </Ternary>
         </div>
-        <ScrollBar />
-      </ScrollArea>
+        {/* <ScrollBar /> */}
+      </div>
     </>
   );
 }

@@ -50,6 +50,7 @@ export const AssistantMessage = ({
     <div className="flex items-start space-x-4">
       <div className="bg-background group relative w-[90%] rounded-2xl rounded-tl-md px-4 py-3">
         <MarkdownView markdown={content} />
+        {/* <div>{content}</div> */}
         {hasContent && (
           <div className="text-muted-foreground mt-2 flex items-center text-xs">
             <Button

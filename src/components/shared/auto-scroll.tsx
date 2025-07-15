@@ -12,7 +12,13 @@ export const AutoScroll = ({
     <div
       ref={(el) => {
         if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "end" });
+          const refId = requestAnimationFrame(() =>
+            el.scrollIntoView({ behavior: "smooth", block: "end" }),
+          );
+
+          return () => {
+            cancelAnimationFrame(refId);
+          };
         }
       }}
     >

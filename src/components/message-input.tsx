@@ -39,13 +39,8 @@ export default function MessageInput() {
   const handleMessageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isApiConfigured) {
-      return;
-    }
-
     if (input.trim()) {
       handleSubmit(e);
-      debugger;
       if (!pathname.includes("conversation")) {
         router.push(appendIdInUrl(ROUTES_URL.CONVERSATION, threadId));
       }
@@ -137,7 +132,7 @@ export default function MessageInput() {
 
               {/* Send button */}
               <Button
-                disabled={!isApiConfigured}
+                disabled={!input.length}
                 type="submit"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground ml-3 h-auto rounded-lg p-2 transition-all duration-150 hover:scale-105 active:scale-95"
               >

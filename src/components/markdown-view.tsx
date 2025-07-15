@@ -37,9 +37,9 @@ export const MarkdownView: React.FC<MarkdownViewProps> = ({ markdown }) => {
   };
 
   return (
-    <div className="prose dark:prose-invert w-full max-w-none">
-      <Markdown components={components}>{markdown}</Markdown>
-    </div>
+    // <div className="prose dark:prose-invert w-full max-w-none">
+    <Markdown components={components}>{markdown}</Markdown>
+    // </div>
   );
   // return (
   //   <div className="prose prose-base">

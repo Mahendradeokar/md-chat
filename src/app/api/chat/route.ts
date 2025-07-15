@@ -49,7 +49,7 @@ const getTitleCreationPromise = async ({
 
   const result = await tryCatch(
     generateText({
-      model: modelProvider(AVAILABLE_MODELS.META_LLAMA_3_3_8B_INSTRUCT_FREE.id),
+      model: modelProvider(AVAILABLE_MODELS.AUTO.id),
       // model: getMockTitleModel(),
       maxTokens: 20,
       system: titleGenerationPrompt.content,
@@ -102,23 +102,14 @@ export async function POST(req: Request) {
     }
   }
 
-  const { data: providerKey, error } = await tryCatch(
+  const { data: providerKey } = await tryCatch(
     getUserProviderKey(PROVIDERS.OPENROUTER, {
       token: userAuthToken,
     }),
   );
 
-  if (error) {
-    {
-      return Response.json(
-        { error: error.message },
-        { status: 400, statusText: "Bad Request" },
-      );
-    }
-  }
-
   const openRouterInstance = createOpenRouter({
-    apiKey: providerKey,
+    apiKey: providerKey ?? process.env.OPEN_ROUTER_KEY,
   });
 
   const lastMessage = messages[messages.length - 1]!;
@@ -146,7 +137,12 @@ export async function POST(req: Request) {
       dataStream.writeData(threadCreatedEvent as unknown as JSONValue);
 
       const result = streamText({
-        model: openRouterInstance(modelId),
+        model: openRouterInstance(modelId, {
+          reasoning: {
+            exclude: true,
+            max_tokens: 0,
+          },
+        }),
         // model: getMockChatModel(),
         maxTokens: 10000,
         messages: [

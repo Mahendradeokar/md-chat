@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import type { ReactNode } from "react";
 import {
   AnthropicIcon,
@@ -52,7 +53,6 @@ export const AVAILABLE_MODELS = {
     id: "openai/gpt-4.1-mini",
     name: "GPT-4.1 Mini",
     icon: OpenAIIcon,
-    default: true,
   },
   OPENAI_GPT_4_1_NANO: {
     id: "openai/gpt-4.1-nano",
@@ -99,15 +99,21 @@ export const AVAILABLE_MODELS = {
     name: "Llama 4 Scout",
     icon: MetaIcon,
   },
-  META_LLAMA_3_3_8B_INSTRUCT_FREE: {
-    id: "meta-llama/llama-3.3-8b-instruct:free",
-    name: "Llama 3.3 8B Instruct",
+  META_LLAMA_3_2_3B_INSTRUCT_FREE: {
+    id: "meta-llama/llama-3.2-3b-instruct:free",
+    name: "Llama 3.2 3B Instruct (Free)",
     icon: MetaIcon,
   },
   SARVAMAI_SARVAM_M_FREE: {
     id: "sarvamai/sarvam-m:free",
     name: "Sarvam-M",
     icon: SarvamIcon,
+  },
+  AUTO: {
+    id: "openrouter/auto",
+    name: "Auto",
+    icon: Sparkles,
+    default: true,
   },
 };
 
