@@ -10,19 +10,12 @@ import { appendIdInUrl } from "~/lib/utils";
 import { getDefaultModel, ROUTES_URL } from "~/constants";
 import { ModelSelector } from "./model-selector";
 import { EventService } from "~/lib/modules/EventService";
-import { useQueryWithStatus } from "~/hooks/use-query-with-status";
-import { api } from "~/../convex/_generated/api";
 
 export default function MessageInput() {
   const [selectedModel, setSelectedModel] = useState<{
     id: string;
     name: string;
   }>(getDefaultModel());
-
-  const { data: isApiConfigured } = useQueryWithStatus(
-    api.apiKeys.isApiKeysConfigured,
-    {},
-  );
 
   const { input, handleInputChange, handleSubmit, threadId, setInput } =
     useMDChat({

@@ -1,14 +1,7 @@
 "use client";
 
 import { useMDChat as useMDChat } from "~/hooks/use-chat";
-import {
-  AutoScroll,
-  Condition,
-  Else,
-  If,
-  Loading,
-  Ternary,
-} from "~/components/shared";
+import { Condition, Else, If, Loading, Ternary } from "~/components/shared";
 import {
   AssistantMessage,
   ErrorMessage,
@@ -16,9 +9,8 @@ import {
 } from "~/components/messsage-types";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { ROUTES_URL } from "~/constants";
+import { AVAILABLE_MODELS, ROUTES_URL } from "~/constants";
 import { generateUniqId } from "~/lib/utils";
-import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
 
 export default function ConversationPage() {
   const router = useRouter();
@@ -62,7 +54,16 @@ export default function ConversationPage() {
             {/* </AutoScroll> */}
           </Ternary>
           <Ternary condition={Boolean(error)}>
-            <ErrorMessage onRetry={reload} error={error} />
+            <ErrorMessage
+              onRetry={() =>
+                reload({
+                  body: {
+                    modelId: AVAILABLE_MODELS.AUTO.id, // Use the Auto model as fallback.
+                  },
+                })
+              }
+              error={error}
+            />
           </Ternary>
         </div>
         {/* <ScrollBar /> */}
